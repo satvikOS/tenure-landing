@@ -1,5 +1,6 @@
 import { Container, Eyebrow } from "@/components/ui/layout";
 import { Reveal } from "@/components/ui/Reveal";
+import { SectionContour } from "@/components/visuals/SectionContour";
 
 /* What today's cold handoff costs. */
 const lost = [
@@ -56,7 +57,8 @@ function CheckMark() {
 
 export function Problem() {
   return (
-    <section className="relative border-t border-line bg-sand py-24 sm:py-32">
+    <section className="relative isolate overflow-hidden border-t border-line bg-sand py-24 sm:py-32">
+      <SectionContour place="bl" seed={5} className="text-ink/[0.06]" />
       <Container>
         <div className="max-w-2xl">
           <Reveal>

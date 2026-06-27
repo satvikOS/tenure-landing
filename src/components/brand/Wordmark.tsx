@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { Logo } from "@/components/brand/Logo";
 import { cn } from "@/lib/cn";
 
@@ -12,7 +11,8 @@ export function Wordmark({
   tone?: "ink" | "paper";
 }) {
   return (
-    <Link
+    // Plain anchor (not next/link) so clicking the logo does a full page refresh.
+    <a
       href={href}
       aria-label="Tenure — home"
       className={cn("group inline-flex items-center gap-2.5", className)}
@@ -26,6 +26,6 @@ export function Wordmark({
       >
         Tenure
       </span>
-    </Link>
+    </a>
   );
 }

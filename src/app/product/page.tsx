@@ -143,7 +143,7 @@ export default function ProductPage() {
           </div>
 
           <Reveal delay={0.12} className="mt-12">
-            <DashboardMock className="mx-auto max-w-5xl" />
+            <DashboardMock initialModule="Memory" className="mx-auto max-w-5xl" />
           </Reveal>
 
           <Reveal delay={0.08} className="mt-12">

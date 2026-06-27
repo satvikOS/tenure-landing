@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { Container, Eyebrow } from "@/components/ui/layout";
 import { Reveal } from "@/components/ui/Reveal";
+import { SectionContour } from "@/components/visuals/SectionContour";
 
 type Module = {
   name: string;
@@ -96,7 +97,8 @@ const MODULES: Module[] = [
 
 export function Modules() {
   return (
-    <section className="relative border-t border-line bg-sand py-24 sm:py-32">
+    <section className="relative isolate overflow-hidden border-t border-line bg-sand py-24 sm:py-32">
+      <SectionContour place="tr" seed={2} className="text-grove/[0.07]" />
       <Container>
         <div className="mx-auto max-w-2xl text-center">
           <Reveal>

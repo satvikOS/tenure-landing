@@ -1,0 +1,12 @@
+import { chromium } from "playwright";
+const b = await chromium.launch();
+const p = await b.newPage({ viewport: { width: 1440, height: 1000 }, deviceScaleFactor: 2 });
+await p.goto("http://localhost:3000", { waitUntil: "networkidle" });
+await p.waitForTimeout(2200);
+const btn = p.getByRole("button", { name: process.argv[2] || "Events", exact: true }).first();
+await btn.click({ force: true });
+await p.waitForTimeout(900);
+const hero = await p.$("main > section");
+await hero.screenshot({ path: "/tmp/shots/hero-click.png" });
+await b.close();
+console.log("clicked + shot");

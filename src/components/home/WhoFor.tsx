@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import Image from "next/image";
 import { Container, Eyebrow } from "@/components/ui/layout";
 import { Reveal } from "@/components/ui/Reveal";
+import { SectionContour } from "@/components/visuals/SectionContour";
 
 type Audience = {
   icon: ReactNode;
@@ -80,7 +81,8 @@ function Check() {
 
 export function WhoFor() {
   return (
-    <section className="relative border-t border-line py-24 sm:py-32">
+    <section className="relative isolate overflow-hidden border-t border-line py-24 sm:py-32">
+      <SectionContour place="tl" seed={8} className="text-ink/[0.06]" />
       <Container>
         <div className="max-w-2xl">
           <Reveal>

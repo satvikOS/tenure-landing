@@ -26,8 +26,8 @@ function field(x: number, y: number, seed: number): number {
 
 /** Marching-squares iso-contours → one path string per elevation level. */
 function buildContours(seed: number): string[] {
-  const COLS = 88;
-  const ROWS = 52;
+  const COLS = 66;
+  const ROWS = 38;
   const g: number[][] = [];
   let min = Infinity;
   let max = -Infinity;
@@ -41,7 +41,7 @@ function buildContours(seed: number): string[] {
     }
   }
 
-  const LEVELS = 11;
+  const LEVELS = 8;
   const lerp = (a: number, b: number, va: number, vb: number, lv: number) =>
     a + ((b - a) * (lv - va)) / (vb - va);
 

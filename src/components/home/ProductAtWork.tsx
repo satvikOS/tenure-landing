@@ -4,6 +4,7 @@ import { motion, useReducedMotion } from "motion/react";
 import type { ReactNode } from "react";
 import { Container, Eyebrow } from "@/components/ui/layout";
 import { Reveal } from "@/components/ui/Reveal";
+import { SectionContour } from "@/components/visuals/SectionContour";
 import { cn } from "@/lib/cn";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
@@ -171,7 +172,8 @@ const FEATURES: Feature[] = [
 
 export function ProductAtWork() {
   return (
-    <section className="relative border-t border-line py-24 sm:py-32">
+    <section className="relative isolate overflow-hidden border-t border-line py-24 sm:py-32">
+      <SectionContour place="cr" seed={6} className="text-grove/[0.06]" />
       <Container>
         <div className="max-w-2xl">
           <Reveal>

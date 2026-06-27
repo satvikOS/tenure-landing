@@ -1,5 +1,6 @@
 import { Container, Eyebrow } from "@/components/ui/layout";
 import { Reveal } from "@/components/ui/Reveal";
+import { SectionContour } from "@/components/visuals/SectionContour";
 
 const POINTS = [
   "Answers cite the real records and people behind them",
@@ -47,7 +48,8 @@ function Check() {
 
 export function AiOnboarding() {
   return (
-    <section className="relative overflow-hidden border-t border-line-dark bg-ink py-24 text-paper sm:py-32">
+    <section className="relative isolate overflow-hidden border-t border-line-dark bg-ink py-24 text-paper sm:py-32">
+      <SectionContour place="br" seed={11} className="text-paper/[0.07]" />
       {/* soft grove glow */}
       <div
         aria-hidden
