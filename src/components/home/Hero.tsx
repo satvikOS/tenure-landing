@@ -2,6 +2,8 @@ import { Container, Eyebrow } from "@/components/ui/layout";
 import { Reveal } from "@/components/ui/Reveal";
 import { Button } from "@/components/ui/Button";
 import { DashboardMock } from "@/components/visuals/DashboardMock";
+import { ContourField } from "@/components/visuals/ContourField";
+import { HeroShapes } from "@/components/home/HeroShapes";
 import { site } from "@/lib/site";
 
 export function Hero() {
@@ -13,22 +15,16 @@ export function Hero() {
         className="pointer-events-none absolute inset-0 [background:radial-gradient(80%_55%_at_50%_0%,rgba(28,140,90,0.08),transparent_60%)]"
       />
 
-      {/* geometric accents (Frankli) — angular, no circles */}
-      <div aria-hidden className="pointer-events-none absolute inset-0 hidden sm:block">
-        <div className="absolute left-[7%] top-[26%] h-7 w-7 rotate-[18deg] rounded-[7px] bg-coral/85" />
-        <div className="absolute right-[9%] top-[20%] h-5 w-5 rotate-45 rounded-[4px] bg-violet/80" />
-        <svg
-          className="absolute left-[14%] top-[52%] h-8 w-8 text-gold"
-          viewBox="0 0 24 24"
-          fill="currentColor"
-        >
-          <path d="M12 2l10 18H2z" />
-        </svg>
-        <div className="absolute right-[13%] top-[55%] h-7 w-7 text-sky">
-          <span className="absolute left-1/2 top-0 h-full w-[3px] -translate-x-1/2 rounded-full bg-current" />
-          <span className="absolute left-0 top-1/2 h-[3px] w-full -translate-y-1/2 rounded-full bg-current" />
-        </div>
+      {/* faint flowing contour grain */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 top-0 h-[70%] text-grove/[0.07] [mask-image:radial-gradient(75%_70%_at_50%_18%,black,transparent_72%)]"
+      >
+        <ContourField lines={22} seed={4} />
       </div>
+
+      {/* geometric accents (Frankli) — angular, floating, no circles */}
+      <HeroShapes />
 
       <Container className="relative pb-16 pt-32 text-center sm:pt-40">
         <Reveal>

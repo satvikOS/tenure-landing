@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import Image from "next/image";
 import { Container, Eyebrow } from "@/components/ui/layout";
 import { Reveal } from "@/components/ui/Reveal";
 
@@ -7,10 +8,10 @@ type Audience = {
   title: string;
   body: string;
   features: string[];
-  tinted?: boolean;
+  photo: string;
+  alt: string;
 };
 
-/** A clustered, angular mark — the rotating board. No circles. */
 function OrgIcon() {
   return (
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden>
@@ -21,7 +22,6 @@ function OrgIcon() {
   );
 }
 
-/** A steady framework — the institution that stewards. */
 function AdminIcon() {
   return (
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden>
@@ -40,8 +40,10 @@ const AUDIENCES: Audience[] = [
     features: [
       "One ledger for budgets, dues, and reimbursements",
       "Events, rosters, and vendor contacts in one place",
-      "A clean handoff packet the next board opens immediately",
+      "A clean handoff the next board opens immediately",
     ],
+    photo: "/photos/students-laptop.jpg",
+    alt: "Student organization members gathered around a laptop on campus",
   },
   {
     icon: <AdminIcon />,
@@ -49,10 +51,11 @@ const AUDIENCES: Audience[] = [
     body: "Oversight and continuity across every organization you steward. The institutional memory survives turnover instead of leaving with each cohort — and onboarding the next leader takes days, not a semester.",
     features: [
       "A live view across every org you oversee",
-      "Compliance and spending records that persist by seat",
+      "Spending and compliance records that persist by seat",
       "Knowledge that stays with the role through every transition",
     ],
-    tinted: true,
+    photo: "/photos/team-charts.jpg",
+    alt: "An administrative team reviewing budgets and plans around a table",
   },
 ];
 
@@ -100,28 +103,39 @@ export function WhoFor() {
         <div className="mt-12 grid gap-6 md:grid-cols-2">
           {AUDIENCES.map((a, i) => (
             <Reveal key={a.title} delay={0.06 + i * 0.08}>
-              <article
-                className={`flex h-full flex-col rounded-2xl border border-line p-7 shadow-[0_1px_2px_rgba(12,30,51,0.05)] transition hover:-translate-y-0.5 hover:shadow-[0_18px_40px_-24px_rgba(12,30,51,0.25)] sm:p-8 ${
-                  a.tinted ? "bg-grove-soft/50" : "bg-cloud"
-                }`}
-              >
-                <span className="flex h-12 w-12 items-center justify-center rounded-xl border border-line bg-cloud text-grove">
-                  {a.icon}
-                </span>
+              <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-cloud shadow-[0_1px_2px_rgba(12,30,51,0.05)] transition hover:-translate-y-0.5 hover:shadow-[0_22px_50px_-28px_rgba(12,30,51,0.35)]">
+                <div className="relative aspect-[16/9] overflow-hidden">
+                  <Image
+                    src={a.photo}
+                    alt={a.alt}
+                    width={1600}
+                    height={900}
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="h-full w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03]"
+                  />
+                  <div
+                    aria-hidden
+                    className="absolute inset-0 bg-gradient-to-t from-ink/45 via-ink/5 to-transparent"
+                  />
+                  <span className="absolute left-4 top-4 flex h-10 w-10 items-center justify-center rounded-xl border border-line bg-cloud/95 text-grove backdrop-blur">
+                    {a.icon}
+                  </span>
+                  <h3 className="absolute bottom-4 left-5 font-display text-xl font-semibold text-paper">
+                    {a.title}
+                  </h3>
+                </div>
 
-                <h3 className="font-display mt-6 text-xl font-semibold text-ink">
-                  {a.title}
-                </h3>
-                <p className="mt-3 leading-relaxed text-ink-soft">{a.body}</p>
-
-                <ul className="mt-6 space-y-3 border-t border-line pt-6">
-                  {a.features.map((f) => (
-                    <li key={f} className="flex items-start gap-3 text-[0.95rem] text-ink">
-                      <Check />
-                      <span className="leading-snug">{f}</span>
-                    </li>
-                  ))}
-                </ul>
+                <div className="flex flex-1 flex-col p-7 sm:p-8">
+                  <p className="leading-relaxed text-ink-soft">{a.body}</p>
+                  <ul className="mt-6 space-y-3 border-t border-line pt-6">
+                    {a.features.map((f) => (
+                      <li key={f} className="flex items-start gap-3 text-[0.95rem] text-ink">
+                        <Check />
+                        <span className="leading-snug">{f}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </article>
             </Reveal>
           ))}

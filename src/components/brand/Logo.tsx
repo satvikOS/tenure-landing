@@ -1,12 +1,11 @@
 import { cn } from "@/lib/cn";
 
 /**
- * Tenure logomark — an enterprise-grade monogram in the SAP/Workday tradition:
- * a confident "T" in a navy gradient tile, grounded by a grove base bar (the
- * role's foundation that the next leader inherits). Geometric, no circles.
+ * Tenure logomark — an enterprise monogram in the SAP/Workday tradition: a
+ * confident "T" on a navy gradient chip with a soft top sheen, standing on a
+ * grove platform (the foundation the next leader inherits). Geometric, no circles.
  *
- * Pass `solid` to render a flat tile color (e.g. on dark surfaces where the
- * gradient would blend in).
+ * Pass `solid` for a flat tile color (e.g. on dark surfaces).
  */
 export function Logo({
   className,
@@ -23,20 +22,23 @@ export function Logo({
       aria-hidden="true"
       focusable="false"
     >
-      {!solid && (
-        <defs>
-          <linearGradient id="tnr-tile" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#1f4467" />
-            <stop offset="100%" stopColor="#0c1e33" />
-          </linearGradient>
-        </defs>
-      )}
+      <defs>
+        <linearGradient id="tnr-tile" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#26527a" />
+          <stop offset="100%" stopColor="#0c1e33" />
+        </linearGradient>
+        <linearGradient id="tnr-sheen" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#ffffff" stopOpacity="0.18" />
+          <stop offset="46%" stopColor="#ffffff" stopOpacity="0" />
+        </linearGradient>
+      </defs>
       <rect width="32" height="32" rx="9" fill={fill} />
-      {/* T crossbar + stem */}
-      <rect x="7.5" y="9" width="17" height="3.5" rx="1.4" fill="#ffffff" />
-      <rect x="14.25" y="9" width="3.5" height="12" rx="1.4" fill="#ffffff" />
-      {/* grove base — the foundation the next leader stands on */}
-      <rect x="10.5" y="22.4" width="11" height="2.6" rx="1.3" fill="#2cb574" />
+      <rect width="32" height="32" rx="9" fill="url(#tnr-sheen)" />
+      {/* T */}
+      <rect x="7.4" y="8.5" width="17.2" height="3.5" rx="1.4" fill="#ffffff" />
+      <rect x="14.25" y="8.5" width="3.5" height="13" rx="1.4" fill="#ffffff" />
+      {/* grove platform the T stands on */}
+      <rect x="10" y="21.6" width="12" height="2.8" rx="1.4" fill="#2cb574" />
     </svg>
   );
 }

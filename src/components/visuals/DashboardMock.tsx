@@ -1,3 +1,6 @@
+"use client";
+
+import { motion, useReducedMotion } from "motion/react";
 import { Logo } from "@/components/brand/Logo";
 import { cn } from "@/lib/cn";
 
@@ -15,8 +18,12 @@ const RECORDS = [
   { kind: "Vendor", title: "Rochester Print — 15% rate", from: "Jordan · ’25" },
 ];
 
+const EASE = [0.16, 1, 0.3, 1] as const;
+
 /** A credible, light ERP workspace for a university organization. */
 export function DashboardMock({ className }: { className?: string }) {
+  const reduce = useReducedMotion();
+
   return (
     <div
       className={cn(
@@ -39,7 +46,12 @@ export function DashboardMock({ className }: { className?: string }) {
             Term 2025–26
           </span>
           <span className="inline-flex items-center gap-1.5 rounded-lg bg-grove-soft px-2.5 py-1 text-[0.72rem] font-medium text-grove-deep">
-            <span className="h-1.5 w-1.5 rounded-sm bg-grove" />
+            <motion.span
+              className="h-1.5 w-1.5 rounded-sm bg-grove"
+              initial={{ opacity: 1 }}
+              animate={reduce ? undefined : { opacity: [1, 0.3, 1] }}
+              transition={reduce ? undefined : { duration: 2, repeat: Infinity }}
+            />
             Ask Tenure
           </span>
         </div>
@@ -82,7 +94,13 @@ export function DashboardMock({ className }: { className?: string }) {
           </div>
 
           {/* the AI onboarding panel — the hero feature */}
-          <div className="rounded-xl border border-grove/25 bg-grove-soft/60 p-3.5">
+          <motion.div
+            className="rounded-xl border border-grove/25 bg-grove-soft/60 p-3.5"
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-40px" }}
+            transition={reduce ? { duration: 0 } : { duration: 0.5, ease: EASE }}
+          >
             <div className="flex items-center gap-2 text-[0.78rem] text-grove-deep">
               <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden>
                 <path
@@ -100,7 +118,7 @@ export function DashboardMock({ className }: { className?: string }) {
               Gallery ran $4,200, booked through Priya&rsquo;s contact —
               <span className="text-grove-deep"> 3 sources ↗</span>
             </p>
-          </div>
+          </motion.div>
 
           {/* budget + records */}
           <div className="mt-3 grid grid-cols-1 gap-3 lg:grid-cols-2">
@@ -113,15 +131,30 @@ export function DashboardMock({ className }: { className?: string }) {
                 </span>
               </p>
               <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-line">
-                <div className="h-full w-[69%] rounded-full bg-grove" />
+                <motion.div
+                  className="h-full rounded-full bg-grove"
+                  initial={{ width: "0%" }}
+                  whileInView={{ width: "69%" }}
+                  viewport={{ once: true, margin: "-40px" }}
+                  transition={reduce ? { duration: 0 } : { duration: 1.1, ease: EASE, delay: 0.15 }}
+                />
               </div>
             </div>
 
             <div className="rounded-xl border border-line bg-paper/50 p-3.5">
               <p className="label-mono text-[0.6rem]">Inherited records</p>
               <ul className="mt-2 space-y-1.5">
-                {RECORDS.map((r) => (
-                  <li key={r.title} className="flex items-center gap-2 text-[0.78rem]">
+                {RECORDS.map((r, i) => (
+                  <motion.li
+                    key={r.title}
+                    className="flex items-center gap-2 text-[0.78rem]"
+                    initial={{ opacity: 0, x: -6 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true, margin: "-40px" }}
+                    transition={
+                      reduce ? { duration: 0 } : { duration: 0.4, ease: EASE, delay: 0.25 + i * 0.12 }
+                    }
+                  >
                     <span className="rounded border border-line bg-cloud px-1 py-0.5 font-mono text-[0.56rem] uppercase tracking-wide text-ink-faint">
                       {r.kind}
                     </span>
@@ -129,7 +162,7 @@ export function DashboardMock({ className }: { className?: string }) {
                     <span className="hidden font-mono text-[0.6rem] text-ink-faint lg:inline">
                       {r.from}
                     </span>
-                  </li>
+                  </motion.li>
                 ))}
               </ul>
             </div>

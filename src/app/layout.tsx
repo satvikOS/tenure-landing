@@ -3,6 +3,7 @@ import { generalSans, plexMono } from "@/lib/fonts";
 import { site } from "@/lib/site";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
+import { SmoothScroll } from "@/components/site/SmoothScroll";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -61,9 +62,11 @@ export default function RootLayout({
       className={`${generalSans.variable} ${plexMono.variable} antialiased`}
     >
       <body className="flex min-h-dvh flex-col bg-paper text-ink">
-        <SiteHeader />
-        <main className="flex-1">{children}</main>
-        <SiteFooter />
+        <SmoothScroll>
+          <SiteHeader />
+          <main className="flex-1">{children}</main>
+          <SiteFooter />
+        </SmoothScroll>
       </body>
     </html>
   );

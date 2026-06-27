@@ -112,10 +112,11 @@
 .wordmark-giant {
   font-family: var(--font-general), sans-serif;
   font-weight: 600;
-  font-size: clamp(5rem, 21vw, 19rem);
-  line-height: 0.8;
-  letter-spacing: -0.05em;
-  background: linear-gradient(180deg, #21405f 0%, #16314c 50%, #0c1e33 100%);
+  font-size: clamp(3.5rem, 16.5vw, 14.5rem);
+  line-height: 0.92;
+  letter-spacing: -0.035em;
+  padding-inline: 0.1em;
+  background: linear-gradient(180deg, #284c6f 0%, #18324d 52%, #0c1e33 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -176,6 +177,21 @@
     color: var(--color-ink);
     font-weight: 600;
   }
+}
+
+/* ----- Lenis smooth scroll ----------------------------------------------- */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
 }
 
 /* Reduced motion: respect the reader. */
