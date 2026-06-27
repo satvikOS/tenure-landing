@@ -1,0 +1,190 @@
+import { Container, Eyebrow } from "@/components/ui/layout";
+import { Reveal } from "@/components/ui/Reveal";
+
+const POINTS = [
+  "Answers cite the real records and people behind them",
+  "No more “ask the person who left”",
+  "Every term it only gets smarter",
+];
+
+type Exchange = {
+  ask: string;
+  answer: string;
+  sources: string;
+};
+
+const EXCHANGES: Exchange[] = [
+  {
+    ask: "What's our sponsorship pipeline?",
+    answer:
+      "Three live: Aramark renewal ($6k, sent), M&T Bank (intro from Maya ’24, awaiting reply), and Rochester Print at a standing 15% rate.",
+    sources: "3 sources",
+  },
+  {
+    ask: "How do we run elections?",
+    answer:
+      "Nominations open week 10, two-week window, ranked-choice ballot in the Members module. Last cycle’s timeline and the bylaws clause are attached.",
+    sources: "Bylaws §4 · 2 records",
+  },
+];
+
+function Check() {
+  return (
+    <span className="mt-0.5 inline-flex h-5 w-5 flex-none items-center justify-center rounded-md bg-grove/15">
+      <svg width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden>
+        <path
+          d="M3.5 8.5l3 3 6-7"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="text-grove-bright"
+        />
+      </svg>
+    </span>
+  );
+}
+
+export function AiOnboarding() {
+  return (
+    <section className="relative overflow-hidden border-t border-line-dark bg-ink py-24 text-paper sm:py-32">
+      {/* soft grove glow */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 [background:radial-gradient(60%_55%_at_72%_30%,rgba(37,169,109,0.18),transparent_68%)]"
+      />
+      {/* angular accents */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute left-[8%] top-[18%] hidden h-6 w-6 rotate-[18deg] rounded-[6px] bg-coral/70 sm:block"
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute bottom-[16%] right-[10%] hidden h-5 w-5 rotate-45 rounded-[4px] bg-violet/70 sm:block"
+      />
+
+      <Container className="relative grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+        {/* LEFT — copy */}
+        <div>
+          <Reveal>
+            <Eyebrow>Tenure AI</Eyebrow>
+          </Reveal>
+
+          <Reveal delay={0.06}>
+            <h2 className="font-display mt-6 text-[2rem] font-semibold leading-[1.08] tracking-[-0.03em] text-paper sm:text-[2.5rem] lg:text-[2.8rem]">
+              New leader Monday.{" "}
+              <span className="text-grove-bright">Up to speed by Wednesday.</span>
+            </h2>
+          </Reveal>
+
+          <Reveal delay={0.12}>
+            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-paper/70">
+              Ask Tenure anything &mdash; how a deal was closed, where the budget
+              stands, why a decision was made &mdash; and get an answer grounded in
+              the role&rsquo;s own history. A semester of ramp becomes a few days,
+              and the time you save is real money back to the organization.
+            </p>
+          </Reveal>
+
+          <Reveal delay={0.18}>
+            <ul className="mt-8 space-y-3">
+              {POINTS.map((point) => (
+                <li
+                  key={point}
+                  className="flex items-start gap-3 text-[0.97rem] leading-relaxed text-paper/80"
+                >
+                  <Check />
+                  <span>{point}</span>
+                </li>
+              ))}
+            </ul>
+          </Reveal>
+        </div>
+
+        {/* RIGHT — chat card */}
+        <Reveal delay={0.12}>
+          <div className="rounded-2xl border border-line-dark bg-ink-raised p-5 shadow-[0_40px_120px_-50px_rgba(0,0,0,0.7)]">
+            {/* card header */}
+            <div className="flex items-center justify-between gap-3 border-b border-line-dark pb-4">
+              <div className="flex items-center gap-2.5">
+                <span className="inline-flex h-7 w-7 items-center justify-center rounded-lg bg-grove/20">
+                  <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden>
+                    <path
+                      d="M8 1.5l1.6 3.7 4 .3-3 2.6.9 3.9L8 12l-3.5 2 .9-3.9-3-2.6 4-.3z"
+                      fill="currentColor"
+                      className="text-grove-bright"
+                    />
+                  </svg>
+                </span>
+                <span className="font-display text-sm font-semibold text-paper">
+                  Ask Tenure
+                </span>
+              </div>
+              <span className="label-mono text-[0.6rem] text-paper/40">
+                Treasurer seat
+              </span>
+            </div>
+
+            {/* exchanges */}
+            <div className="space-y-5 pt-5">
+              {EXCHANGES.map((ex) => (
+                <div key={ex.ask} className="space-y-2.5">
+                  {/* user question */}
+                  <div className="flex justify-end">
+                    <p className="max-w-[85%] rounded-2xl rounded-br-md border border-line-dark bg-paper/[0.06] px-3.5 py-2 text-[0.86rem] text-paper/85">
+                      {ex.ask}
+                    </p>
+                  </div>
+                  {/* answer */}
+                  <div className="flex justify-start">
+                    <div className="max-w-[90%] rounded-2xl rounded-bl-md border border-grove/30 bg-grove/[0.12] px-3.5 py-2.5">
+                      <p className="text-[0.86rem] leading-relaxed text-paper/90">
+                        {ex.answer}
+                      </p>
+                      <span className="mt-2 inline-flex items-center gap-1 font-mono text-[0.62rem] uppercase tracking-wide text-grove-bright">
+                        <svg
+                          width="11"
+                          height="11"
+                          viewBox="0 0 16 16"
+                          fill="none"
+                          aria-hidden
+                        >
+                          <path
+                            d="M5 11L11 5M6 5h5v5"
+                            stroke="currentColor"
+                            strokeWidth="1.7"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                        {ex.sources}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* composer affordance */}
+            <div className="mt-5 flex items-center gap-2 rounded-xl border border-line-dark bg-ink px-3.5 py-2.5">
+              <span className="flex-1 text-[0.82rem] text-paper/35">
+                Ask about this seat&rsquo;s history&hellip;
+              </span>
+              <span className="inline-flex h-7 w-7 items-center justify-center rounded-lg bg-grove text-cloud">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden>
+                  <path
+                    d="M3 8h10M9 4l4 4-4 4"
+                    stroke="currentColor"
+                    strokeWidth="1.7"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </span>
+            </div>
+          </div>
+        </Reveal>
+      </Container>
+    </section>
+  );
+}

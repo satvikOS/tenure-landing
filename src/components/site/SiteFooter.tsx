@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { RingSeal } from "@/components/visuals/RingSeal";
+import { Logo } from "@/components/brand/Logo";
 import { Wordmark } from "@/components/brand/Wordmark";
 import { site } from "@/lib/site";
 
@@ -7,15 +7,15 @@ export function SiteFooter() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="relative overflow-hidden border-t border-line bg-ink-deep">
+    <footer className="relative overflow-hidden border-t border-line-dark bg-ink">
       <div className="relative z-10 mx-auto w-full max-w-6xl px-5 pt-16 sm:px-8 sm:pt-20">
         <div className="grid grid-cols-1 gap-12 md:grid-cols-12">
           <div className="md:col-span-5">
-            <Wordmark />
-            <p className="mt-5 max-w-xs text-[0.95rem] leading-relaxed text-muted">
+            <Wordmark tone="paper" />
+            <p className="mt-5 max-w-xs text-[0.95rem] leading-relaxed text-paper/65">
               {site.tagline}
             </p>
-            <p className="mt-4 max-w-xs text-sm leading-relaxed text-faint">
+            <p className="mt-4 max-w-xs text-sm leading-relaxed text-paper/40">
               Founded at {site.origin.school}, {site.origin.university}.
             </p>
           </div>
@@ -27,7 +27,7 @@ export function SiteFooter() {
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="text-[0.95rem] text-muted transition-colors hover:text-parchment"
+                    className="text-[0.95rem] text-paper/65 transition-colors hover:text-paper"
                   >
                     {item.label}
                   </Link>
@@ -44,12 +44,12 @@ export function SiteFooter() {
                   href={site.bookingUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group inline-flex items-center gap-1.5 text-[0.95rem] text-parchment transition-colors hover:text-brass-glint"
+                  className="group inline-flex items-center gap-1.5 text-[0.95rem] text-paper transition-colors hover:text-grove-bright"
                 >
-                  Book an intro call
+                  Book a demo
                   <span
                     aria-hidden
-                    className="text-brass transition-transform duration-300 group-hover:translate-x-0.5"
+                    className="text-grove-bright transition-transform duration-300 group-hover:translate-x-0.5"
                   >
                     ↗
                   </span>
@@ -58,7 +58,7 @@ export function SiteFooter() {
               <li>
                 <a
                   href={`mailto:${site.email}`}
-                  className="text-[0.95rem] text-muted transition-colors hover:text-parchment"
+                  className="text-[0.95rem] text-paper/65 transition-colors hover:text-paper"
                 >
                   {site.email}
                 </a>
@@ -68,19 +68,19 @@ export function SiteFooter() {
         </div>
       </div>
 
-      {/* the record's seal, pressed into the page */}
+      {/* giant wordmark, pressed into the navy */}
       <div
         aria-hidden
-        className="pointer-events-none relative z-0 mt-10 flex select-none justify-center overflow-hidden sm:mt-6"
+        className="pointer-events-none relative z-0 mt-10 flex select-none justify-center overflow-hidden sm:mt-4"
       >
         <span className="wordmark-giant">Tenure</span>
       </div>
 
       <div className="relative z-10 mx-auto w-full max-w-6xl px-5 pb-9 sm:px-8">
-        <div className="flex flex-col gap-4 border-t border-line pt-7 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-col gap-4 border-t border-line-dark pt-7 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-center gap-2.5">
-            <RingSeal className="h-4 w-4 text-brass/80" />
-            <span className="text-sm text-faint">
+            <Logo className="h-4 w-4" solid="#1f4467" />
+            <span className="text-sm text-paper/45">
               © {year} {site.name}. All rights reserved.
             </span>
           </div>
@@ -89,28 +89,28 @@ export function SiteFooter() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-faint transition-colors hover:text-parchment"
+                className="text-paper/45 transition-colors hover:text-paper"
               >
                 {item.label}
               </Link>
             ))}
-            <span aria-hidden className="h-3 w-px bg-line" />
+            <span aria-hidden className="h-3 w-px bg-line-dark" />
             <a
               href={site.socials.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-faint transition-colors hover:text-parchment"
+              className="text-paper/45 transition-colors hover:text-paper"
             >
               LinkedIn
             </a>
-            <span aria-hidden className="text-faint/50">
+            <span aria-hidden className="text-paper/30">
               /
             </span>
             <a
               href={site.socials.x}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-faint transition-colors hover:text-parchment"
+              className="text-paper/45 transition-colors hover:text-paper"
             >
               X
             </a>

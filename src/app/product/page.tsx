@@ -1,50 +1,108 @@
+import type { ReactNode } from "react";
 import { Container, Eyebrow } from "@/components/ui/layout";
 import { Reveal } from "@/components/ui/Reveal";
 import { Button } from "@/components/ui/Button";
 import { PageHeader } from "@/components/site/PageHeader";
 import { CtaBand } from "@/components/site/CtaBand";
-import { ProductFrame } from "@/components/visuals/ProductFrame";
-import { RingSeal } from "@/components/visuals/RingSeal";
+import { DashboardMock } from "@/components/visuals/DashboardMock";
 import { site } from "@/lib/site";
 
 export const metadata = {
   title: "Product",
   description:
-    "Tenure gives every role on the board its own living record — contacts, deals, decisions, and playbooks — captured as the work happens and inherited intact at handoff.",
+    "One system for your organization's finance, events, members, and memory — with an AI that gets each new leader productive in days, not a semester.",
 };
 
 const TOOLS = ["Google Drive", "Slack", "Notion", "Sheets", "Gmail", "Calendar"];
 
-const MODES: { n: string; t: string; d: string }[] = [
+const svgProps = {
+  width: 20,
+  height: 20,
+  viewBox: "0 0 24 24",
+  fill: "none",
+  stroke: "currentColor",
+  strokeWidth: 1.6,
+  strokeLinecap: "round" as const,
+  strokeLinejoin: "round" as const,
+};
+
+const RECORDS: { n: string; t: string; d: string; icon: ReactNode }[] = [
   {
     n: "01",
     t: "Contacts & relationships",
-    d: "Sponsors, partners, and alumni — with the warm intro behind each name.",
+    d: "Sponsors, partners, and alumni — with the warm intro and the last conversation kept behind each name.",
+    icon: (
+      <svg {...svgProps} aria-hidden>
+        <rect x="3" y="4" width="7" height="6" rx="1.5" />
+        <rect x="14" y="14" width="7" height="6" rx="1.5" />
+        <path d="M10 7h4a3 3 0 0 1 3 3v4" />
+      </svg>
+    ),
   },
   {
     n: "02",
     t: "Deals & numbers",
-    d: "Vendors, pricing, and budgets — the terms you actually agreed to.",
+    d: "Vendors, pricing, and budgets — the real terms the board agreed to, not a number someone half-remembers.",
+    icon: (
+      <svg {...svgProps} aria-hidden>
+        <path d="M3 21h18" />
+        <rect x="5" y="11" width="3.4" height="7" rx="1" />
+        <rect x="10.3" y="6" width="3.4" height="12" rx="1" />
+        <rect x="15.6" y="14" width="3.4" height="4" rx="1" />
+      </svg>
+    ),
   },
   {
     n: "03",
     t: "Decisions & rationale",
-    d: "What the board chose and why, so next year doesn't relitigate it.",
+    d: "What leadership chose and why it chose it, so next year doesn't relitigate a call that was already settled.",
+    icon: (
+      <svg {...svgProps} aria-hidden>
+        <rect x="4" y="4" width="16" height="16" rx="3" />
+        <path d="M8.5 12.5l2.4 2.4 4.6-5" />
+      </svg>
+    ),
   },
   {
     n: "04",
     t: "Files & playbooks",
-    d: "Decks, timelines, and checklists — the documents that ran the work.",
+    d: "Decks, timelines, and run-of-show checklists — the documents that actually carried the work, not a dead folder.",
+    icon: (
+      <svg {...svgProps} aria-hidden>
+        <path d="M7 3h7l5 5v11a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z" />
+        <path d="M14 3v5h5" />
+        <path d="M9 13h6M9 17h4" />
+      </svg>
+    ),
   },
 ];
 
-const SEATS = [
-  "President",
-  "Treasurer",
-  "Sponsorship",
-  "Events",
-  "Marketing",
-  "Recruitment",
+const POINTS: { t: string; d: string }[] = [
+  {
+    t: "Ready on day one",
+    d: "The AI has already read the seat's full history, so a brand-new officer's first question gets a real answer.",
+  },
+  {
+    t: "Every answer cites its sources",
+    d: "Responses link straight back to the records, files, and decisions they came from — nothing invented.",
+  },
+  {
+    t: "The knowledge stays with the seat",
+    d: "When this officer graduates, the next one inherits the same working memory, intact.",
+  },
+];
+
+const QA: { q: string; a: string; src: string }[] = [
+  {
+    q: "How do we file a reimbursement?",
+    a: "Submit receipts in the Finance module within 14 days; the VP Finance approves, then the org account pays out — the same flow the last three treasurers ran.",
+    src: "2 sources",
+  },
+  {
+    q: "Why did we drop the fall mixer last year?",
+    a: "The board moved that budget to the gala after low turnout — see the October decision log and the vote behind it.",
+    src: "2 sources",
+  },
 ];
 
 export default function ProductPage() {
@@ -54,71 +112,49 @@ export default function ProductPage() {
         eyebrow="The product"
         title={
           <>
-            A workspace for every role that{" "}
-            <em className="foil font-normal italic">remembers</em>.
+            One system for how your organization actually{" "}
+            <span className="text-grove">runs</span>.
           </>
         }
-        intro="Each seat on the board gets its own living record — contacts, deals, decisions, playbooks — captured as the work happens and inherited intact when the term turns over."
+        intro="Tenure runs your finances, events, members, and institutional memory in one place — then an AI that has learned everything the role has done gets each new leader productive in days, not a semester."
       >
-        <div className="flex flex-wrap items-center gap-4">
-          <Button href={site.bookingUrl} size="lg" arrow>
-            Book an intro call
-          </Button>
-          <Button href="/pilot" variant="secondary" size="lg">
-            Join the pilot
-          </Button>
-        </div>
+        <Button href={site.bookingUrl} size="lg" arrow>
+          Book a demo
+        </Button>
+        <Button href="/pilot" variant="secondary" size="lg">
+          Join the pilot
+        </Button>
       </PageHeader>
 
-      {/* 1 — A living record per seat */}
-      <section className="relative border-t border-line/60 py-24 sm:py-32">
+      {/* 1 — The workspace */}
+      <section className="relative border-t border-line py-24 sm:py-32">
         <Container>
-          <div className="max-w-2xl">
+          <div className="mx-auto max-w-2xl text-center">
             <Reveal>
-              <Eyebrow index="01">The workspace</Eyebrow>
+              <Eyebrow index="01" className="justify-center">
+                The workspace
+              </Eyebrow>
             </Reveal>
             <Reveal delay={0.06}>
-              <h2 className="font-display mt-6 text-[2rem] leading-[1.08] text-parchment sm:text-[2.6rem] lg:text-[2.9rem]">
-                A living record per{" "}
-                <em className="foil font-normal italic">seat</em>.
+              <h2 className="font-display mt-6 text-[2rem] font-semibold leading-[1.08] tracking-[-0.03em] text-ink sm:text-[2.5rem] lg:text-[2.8rem]">
+                Finance, events, members, and memory —{" "}
+                <span className="text-grove">one screen</span>.
               </h2>
-            </Reveal>
-            <Reveal delay={0.12}>
-              <p className="mt-6 text-lg leading-relaxed text-muted">
-                Open any role and you find its working memory — the contacts,
-                deals, decisions, and files that belong to that seat, kept
-                current as the term runs and provenance kept on every entry.
-              </p>
             </Reveal>
           </div>
 
-          <Reveal delay={0.1} className="mt-14">
-            <ProductFrame />
+          <Reveal delay={0.12} className="mt-12">
+            <DashboardMock className="mx-auto max-w-5xl" />
           </Reveal>
 
-          <Reveal delay={0.05}>
-            <dl className="mt-9 grid grid-cols-1 gap-6 sm:grid-cols-3">
-              {[
-                { k: "Provenance", v: "Who added it, and when" },
-                { k: "Term", v: "The year it belongs to" },
-                { k: "Seat", v: "The role it carries with" },
-              ].map((x) => (
-                <div key={x.k} className="border-t border-line pt-4">
-                  <dt className="label-mono text-brass/80">{x.k}</dt>
-                  <dd className="mt-2 text-[1rem] text-parchment">{x.v}</dd>
-                </div>
-              ))}
-            </dl>
-            <div className="mt-9 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-              <p className="max-w-sm text-muted">
-                Connects to where the work already lives — no migration, no new
-                place to check.
-              </p>
-              <div className="flex flex-wrap gap-2">
+          <Reveal delay={0.08} className="mt-12">
+            <div className="flex flex-col items-center gap-4">
+              <p className="label-mono">Built to fit around the tools you already use</p>
+              <div className="flex flex-wrap items-center justify-center gap-2.5">
                 {TOOLS.map((t) => (
                   <span
                     key={t}
-                    className="rounded-full border border-line bg-ink-raised/50 px-3 py-1 font-mono text-xs text-muted"
+                    className="rounded-lg border border-line bg-cloud px-3 py-1.5 font-mono text-[0.78rem] text-ink-soft shadow-[0_1px_2px_rgba(12,30,51,0.04)]"
                   >
                     {t}
                   </span>
@@ -129,105 +165,130 @@ export default function ProductPage() {
         </Container>
       </section>
 
-      {/* 2 — Captured as the work happens */}
-      <section className="relative border-t border-line/60 py-24 sm:py-32">
+      {/* 2 — What it captures */}
+      <section className="relative border-t border-line bg-sand py-24 sm:py-32">
         <Container>
           <div className="max-w-2xl">
             <Reveal>
-              <Eyebrow index="02">Capture</Eyebrow>
+              <Eyebrow index="02">What it captures</Eyebrow>
             </Reveal>
             <Reveal delay={0.06}>
-              <h2 className="font-display mt-6 text-[2rem] leading-[1.08] text-parchment sm:text-[2.6rem] lg:text-[2.9rem]">
-                Captured as the work{" "}
-                <em className="foil font-normal italic">happens</em>.
+              <h2 className="font-display mt-6 text-[2rem] font-semibold leading-[1.08] tracking-[-0.03em] text-ink sm:text-[2.5rem] lg:text-[2.8rem]">
+                The record fills itself as the team does the{" "}
+                <span className="text-grove">work</span>.
               </h2>
             </Reveal>
             <Reveal delay={0.12}>
-              <p className="mt-6 text-lg leading-relaxed text-muted">
-                No one writes the handoff doc at the end of the year. The record
-                fills itself, across four fields, as the team does the work.
+              <p className="mt-6 max-w-2xl text-lg leading-relaxed text-ink-soft">
+                No one writes the handoff doc at the end of the year. Tenure keeps
+                four kinds of record current as the work happens, so the next
+                board inherits the real thing — not a scramble of screenshots and
+                a shared drive no one can navigate.
               </p>
             </Reveal>
           </div>
 
-          <div className="mt-12 max-w-3xl border-t border-line">
-            {MODES.map((m, i) => (
+          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {RECORDS.map((r, i) => (
               <Reveal
                 as="div"
-                key={m.n}
-                delay={i * 0.05}
-                className="flex flex-col gap-1.5 border-b border-line py-6 sm:flex-row sm:items-baseline sm:gap-8"
+                key={r.n}
+                delay={0.04 * i}
+                className="flex h-full flex-col rounded-2xl border border-line bg-cloud p-6 shadow-[0_1px_2px_rgba(12,30,51,0.05)] transition hover:-translate-y-0.5 hover:shadow-[0_18px_40px_-24px_rgba(12,30,51,0.25)]"
               >
-                <span className="label-mono shrink-0 text-brass/80 sm:w-24">
-                  Field {m.n}
-                </span>
-                <div>
-                  <h3 className="text-lg font-medium text-parchment">{m.t}</h3>
-                  <p className="mt-1.5 text-[0.97rem] leading-relaxed text-muted">
-                    {m.d}
-                  </p>
+                <div className="flex items-center justify-between">
+                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-grove-soft text-grove-deep">
+                    {r.icon}
+                  </span>
+                  <span className="label-mono">Record {r.n}</span>
                 </div>
+                <h3 className="mt-5 font-display text-lg font-semibold text-ink">
+                  {r.t}
+                </h3>
+                <p className="mt-2 text-[0.95rem] leading-relaxed text-ink-soft">
+                  {r.d}
+                </p>
               </Reveal>
             ))}
           </div>
         </Container>
       </section>
 
-      {/* 3 — A seat, not a person */}
-      <section className="relative border-t border-line/60 bg-umber/40 py-24 sm:py-32">
-        <Container className="grid gap-14 lg:grid-cols-2 lg:items-center lg:gap-20">
+      {/* 3 — Onboarding, handled */}
+      <section className="relative border-t border-line py-24 sm:py-32">
+        <Container className="grid gap-12 lg:grid-cols-2 lg:items-center lg:gap-16">
           <div className="max-w-xl">
             <Reveal>
-              <Eyebrow index="03">Ownership</Eyebrow>
+              <Eyebrow index="03">Onboarding, handled</Eyebrow>
             </Reveal>
             <Reveal delay={0.06}>
-              <h2 className="font-display mt-6 text-[2rem] leading-[1.08] text-parchment sm:text-[2.6rem] lg:text-[2.9rem]">
-                A seat, not a{" "}
-                <em className="foil font-normal italic">person</em>.
+              <h2 className="font-display mt-6 text-[2rem] font-semibold leading-[1.08] tracking-[-0.03em] text-ink sm:text-[2.5rem] lg:text-[2.8rem]">
+                Productive in <span className="text-grove">days</span>, not a
+                semester.
               </h2>
             </Reveal>
             <Reveal delay={0.12}>
-              <p className="mt-6 text-lg leading-relaxed text-muted">
-                Every record belongs to the role, not the student who created
-                it. The treasurer&rsquo;s seat owns the treasurer&rsquo;s
-                knowledge — vendors, budgets, approvals — no matter who is
-                sitting in it this term.
+              <p className="mt-6 text-lg leading-relaxed text-ink-soft">
+                When a leader leaves and the next one takes the seat, they
+                don&rsquo;t start from zero. They ask Tenure in plain language —
+                and an AI that has learned everything the role has done answers
+                from the seat&rsquo;s own history.
               </p>
             </Reveal>
-            <Reveal delay={0.16}>
-              <p className="mt-4 text-lg leading-relaxed text-muted">
-                So when leadership turns over, nothing walks out the door. The
-                work stays with the seat, and the next person inherits it
-                intact.
-              </p>
-            </Reveal>
+
+            <ul className="mt-8 space-y-5">
+              {POINTS.map((p, i) => (
+                <Reveal as="li" key={p.t} delay={0.06 + 0.05 * i} className="flex gap-3.5">
+                  <span className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-md bg-grove-soft text-grove-deep">
+                    <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden>
+                      <path
+                        d="M3.5 8.5l3 3 6-7"
+                        stroke="currentColor"
+                        strokeWidth="1.8"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </span>
+                  <p className="text-[0.97rem] leading-relaxed text-ink-soft">
+                    <span className="font-medium text-ink">{p.t}.</span> {p.d}
+                  </p>
+                </Reveal>
+              ))}
+            </ul>
           </div>
 
+          {/* Q&A card */}
           <Reveal delay={0.1}>
-            <div className="relative overflow-hidden rounded-xl border border-line bg-ink-raised/60 p-7 sm:p-9">
-              <RingSeal
-                rings={6}
-                className="pointer-events-none absolute -right-10 -top-10 h-44 w-44 text-brass/[0.06]"
-              />
-              <p className="label-mono">Record of seats</p>
-              <ul className="relative mt-6 divide-y divide-line">
-                {SEATS.map((seat, i) => (
-                  <li
-                    key={seat}
-                    className="flex items-center gap-4 py-4 first:pt-0"
-                  >
-                    <span className="font-mono text-[0.72rem] uppercase tracking-[0.14em] text-faint">
-                      {`S-${String(i + 1).padStart(2, "0")}`}
-                    </span>
-                    <span className="flex-1 text-[1.02rem] text-parchment">
-                      {seat}
-                    </span>
-                    <span aria-hidden className="font-mono text-patina">
-                      ↳
-                    </span>
-                  </li>
+            <div className="rounded-2xl border border-line bg-cloud p-5 shadow-[0_30px_80px_-40px_rgba(12,30,51,0.4)] sm:p-6">
+              <div className="flex items-center justify-between border-b border-line pb-3.5">
+                <span className="inline-flex items-center gap-1.5 rounded-lg bg-grove-soft px-2.5 py-1 text-[0.72rem] font-medium text-grove-deep">
+                  <span className="h-1.5 w-1.5 rounded-sm bg-grove" />
+                  Ask Tenure
+                </span>
+                <span className="label-mono">Treasurer · day 1</span>
+              </div>
+
+              <div className="mt-4 space-y-5">
+                {QA.map((x) => (
+                  <div key={x.q} className="space-y-2.5">
+                    <div className="rounded-xl border border-line bg-paper/60 px-3.5 py-2.5">
+                      <p className="label-mono">You asked</p>
+                      <p className="mt-1 text-[0.92rem] font-medium text-ink">
+                        {x.q}
+                      </p>
+                    </div>
+                    <div className="rounded-xl border border-grove/25 bg-grove-soft/50 px-3.5 py-3">
+                      <p className="text-[0.9rem] leading-relaxed text-ink-soft">
+                        {x.a}{" "}
+                        <span className="whitespace-nowrap font-medium text-grove-deep">
+                          {x.src} ↗
+                        </span>
+                      </p>
+                    </div>
+                  </div>
                 ))}
-              </ul>
+              </div>
             </div>
           </Reveal>
         </Container>

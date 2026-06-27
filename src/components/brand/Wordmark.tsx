@@ -1,15 +1,15 @@
 import Link from "next/link";
-import { RingSeal } from "@/components/visuals/RingSeal";
+import { Logo } from "@/components/brand/Logo";
 import { cn } from "@/lib/cn";
 
 export function Wordmark({
   className,
   href = "/",
-  sealClassName,
+  tone = "ink",
 }: {
   className?: string;
   href?: string;
-  sealClassName?: string;
+  tone?: "ink" | "paper";
 }) {
   return (
     <Link
@@ -17,13 +17,16 @@ export function Wordmark({
       aria-label="Tenure — home"
       className={cn("group inline-flex items-center gap-2.5", className)}
     >
-      <RingSeal
-        className={cn(
-          "h-7 w-7 text-brass transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:rotate-[24deg]",
-          sealClassName,
-        )}
+      <Logo
+        className="h-8 w-8 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-0.5"
+        solid={tone === "paper" ? "#1f4467" : undefined}
       />
-      <span className="font-display text-[1.4rem] leading-none tracking-[-0.01em] text-parchment">
+      <span
+        className={cn(
+          "font-display text-[1.4rem] font-semibold leading-none tracking-[-0.03em]",
+          tone === "paper" ? "text-paper" : "text-ink",
+        )}
+      >
         Tenure
       </span>
     </Link>

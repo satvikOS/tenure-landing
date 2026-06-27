@@ -1,101 +1,74 @@
 import { Container, Eyebrow } from "@/components/ui/layout";
 import { Reveal } from "@/components/ui/Reveal";
 import { Button } from "@/components/ui/Button";
-import { TenureRings } from "@/components/visuals/TenureRings";
+import { DashboardMock } from "@/components/visuals/DashboardMock";
 import { site } from "@/lib/site";
 
 export function Hero() {
   return (
     <section className="relative overflow-hidden">
-      {/* ambient vignette */}
+      {/* soft wash */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 [background:radial-gradient(120%_80%_at_70%_-10%,rgba(201,138,58,0.10),transparent_55%),radial-gradient(80%_60%_at_-10%_110%,rgba(123,166,160,0.06),transparent_60%)]"
+        className="pointer-events-none absolute inset-0 [background:radial-gradient(80%_55%_at_50%_0%,rgba(28,140,90,0.08),transparent_60%)]"
       />
 
-      <Container className="relative grid items-center gap-16 pb-24 pt-32 sm:pt-40 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10 lg:pb-32">
-        {/* ---- thesis ---- */}
-        <div className="max-w-xl">
-          <Reveal>
-            <Eyebrow>Institutional memory, built for turnover</Eyebrow>
-          </Reveal>
-
-          <Reveal delay={0.06}>
-            <h1 className="font-display mt-6 text-[2.65rem] leading-[1.04] text-parchment sm:text-[3.4rem] lg:text-[3.95rem]">
-              Your board changes every year.
-              <br />
-              Its <em className="foil font-normal italic">memory</em> shouldn&rsquo;t.
-            </h1>
-          </Reveal>
-
-          <Reveal delay={0.12}>
-            <p className="mt-7 max-w-lg text-lg leading-relaxed text-muted">
-              Sponsor contacts, vendor deals, budgets, the event playbook — the
-              moment one board hands off, it scatters. Tenure captures the work as
-              it happens, so the next team inherits a living record on day one,
-              not a cold start.
-            </p>
-          </Reveal>
-
-          <Reveal delay={0.18}>
-            <div className="mt-9 flex flex-wrap items-center gap-3">
-              <Button href={site.bookingUrl} size="lg" arrow>
-                Book an intro call
-              </Button>
-              <Button href="#handoff" variant="secondary" size="lg">
-                See how it works
-              </Button>
-            </div>
-          </Reveal>
-
-          <Reveal delay={0.24}>
-            <p className="mt-10 flex items-start gap-3 text-sm leading-relaxed text-faint">
-              <span aria-hidden className="mt-[6px] h-1.5 w-1.5 shrink-0 rounded-full bg-patina" />
-              Piloting {site.pilot.season} with {wordCount(site.pilot.orgCount)}{" "}
-              organizations and {site.origin.partner}.
-            </p>
-          </Reveal>
+      {/* geometric accents (Frankli) — angular, no circles */}
+      <div aria-hidden className="pointer-events-none absolute inset-0 hidden sm:block">
+        <div className="absolute left-[7%] top-[26%] h-7 w-7 rotate-[18deg] rounded-[7px] bg-coral/85" />
+        <div className="absolute right-[9%] top-[20%] h-5 w-5 rotate-45 rounded-[4px] bg-violet/80" />
+        <svg
+          className="absolute left-[14%] top-[52%] h-8 w-8 text-gold"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+        >
+          <path d="M12 2l10 18H2z" />
+        </svg>
+        <div className="absolute right-[13%] top-[55%] h-7 w-7 text-sky">
+          <span className="absolute left-1/2 top-0 h-full w-[3px] -translate-x-1/2 rounded-full bg-current" />
+          <span className="absolute left-0 top-1/2 h-[3px] w-full -translate-y-1/2 rounded-full bg-current" />
         </div>
+      </div>
 
-        {/* ---- signature ---- */}
-        <div className="relative mx-auto w-full max-w-[30rem] lg:max-w-none">
-          <TenureRings
-            rings={12}
-            labeled
-            startYear={2014}
-            currentTerm="2025–26"
-            className="h-auto w-full"
-          />
+      <Container className="relative pb-16 pt-32 text-center sm:pt-40">
+        <Reveal>
+          <Eyebrow className="justify-center">
+            University ERP · built for turnover
+          </Eyebrow>
+        </Reveal>
 
-          {/* a taste of the record, inherited intact */}
-          <Reveal
-            delay={0.5}
-            className="absolute -bottom-2 -left-1 w-[17.5rem] max-w-[78%] sm:-left-3"
-          >
-            <figure className="rounded-lg border border-line bg-ink-raised/85 p-4 shadow-[0_24px_60px_-24px_rgba(0,0,0,0.8)] backdrop-blur-md">
-              <div className="flex items-center gap-2">
-                <span aria-hidden className="h-3 w-0.5 rounded-full bg-brass" />
-                <span className="label-mono">Inherited record</span>
-              </div>
-              <p className="mt-2.5 font-display text-lg leading-snug text-parchment">
-                Aramark — sponsorship renewal
-              </p>
-              <p className="mt-1 font-mono text-xs text-muted">
-                $4,000 · multi-year · signed Oct 2023
-              </p>
-              <div className="my-3 h-px w-full bg-line" />
-              <p className="font-mono text-[0.7rem] leading-relaxed text-faint">
-                ↳ from Maya Chen · Treasurer · Term 2023&ndash;24
-              </p>
-            </figure>
-          </Reveal>
-        </div>
+        <Reveal delay={0.06}>
+          <h1 className="font-display mx-auto mt-6 max-w-4xl text-[2.7rem] font-semibold leading-[1.04] tracking-[-0.035em] text-ink sm:text-[3.6rem] lg:text-[4.25rem]">
+            People graduate.
+            <br />
+            The <span className="text-grove">know-how stays.</span>
+          </h1>
+        </Reveal>
+
+        <Reveal delay={0.12}>
+          <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-ink-soft">
+            Tenure runs your organization&rsquo;s finances, events, members, and
+            memory in one place. When leaders change, an AI that has learned
+            everything the role has done gets the next person productive in days —
+            not a semester.
+          </p>
+        </Reveal>
+
+        <Reveal delay={0.18}>
+          <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
+            <Button href={site.bookingUrl} size="lg" arrow>
+              Book a demo
+            </Button>
+            <Button href="#how" variant="secondary" size="lg">
+              See how it works
+            </Button>
+          </div>
+        </Reveal>
+
+        <Reveal delay={0.26} className="mt-14">
+          <DashboardMock className="mx-auto max-w-4xl" />
+        </Reveal>
       </Container>
     </section>
   );
-}
-
-function wordCount(n: number): string {
-  const words = ["zero", "one", "two", "three", "four", "five", "six", "seven"];
-  return words[n] ?? String(n);
 }

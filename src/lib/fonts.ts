@@ -1,22 +1,10 @@
-import { Fraunces, IBM_Plex_Mono } from "next/font/google";
+import { IBM_Plex_Mono } from "next/font/google";
 import localFont from "next/font/local";
 
 /**
- * Display — Fraunces. An "old-style with personality" variable serif used with
- * restraint: big editorial headlines + the italic emphasis words. Optical sizing
- * (opsz) plus the SOFT/WONK axes give the institutional-record voice its warmth.
- */
-export const fraunces = Fraunces({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-fraunces",
-  style: ["normal", "italic"],
-  axes: ["opsz", "SOFT", "WONK"],
-});
-
-/**
- * Body / UI — General Sans (self-hosted, Fontshare FFL). A precise modern grotesk
- * that is distinctive without shouting. Variable weight 200–700.
+ * Display + body — General Sans (self-hosted, Fontshare FFL). A clean, slightly
+ * warm geometric grotesk that carries both big headlines and running text.
+ * Variable weight 200–700.
  */
 export const generalSans = localFont({
   src: "../fonts/GeneralSans-Variable.woff2",
@@ -26,8 +14,8 @@ export const generalSans = localFont({
 });
 
 /**
- * Utility / data — IBM Plex Mono. The "registrar" voice: record numbers, term
- * labels, and the product UI's data ride on this. Institutional, technical, true.
+ * Utility / data — IBM Plex Mono. Eyebrows, labels, and the numbers in the
+ * product UI ride on this — the "system of record" voice.
  */
 export const plexMono = IBM_Plex_Mono({
   subsets: ["latin"],

@@ -1,9 +1,10 @@
 import { Hero } from "@/components/home/Hero";
-import { ProblemReset } from "@/components/home/ProblemReset";
-import { WhatItIs } from "@/components/home/WhatItIs";
-import { HowHandoff } from "@/components/home/HowHandoff";
-import { CarriesForward } from "@/components/home/CarriesForward";
-import { Credibility } from "@/components/home/Credibility";
+import { SupporterStrip } from "@/components/site/SupporterStrip";
+import { Problem } from "@/components/home/Problem";
+import { HowItWorks } from "@/components/home/HowItWorks";
+import { Modules } from "@/components/home/Modules";
+import { AiOnboarding } from "@/components/home/AiOnboarding";
+import { WhoFor } from "@/components/home/WhoFor";
 import { Faq } from "@/components/home/Faq";
 import { CtaBand } from "@/components/site/CtaBand";
 
@@ -11,11 +12,12 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      <ProblemReset />
-      <WhatItIs />
-      <HowHandoff />
-      <CarriesForward />
-      <Credibility />
+      <SupporterStrip />
+      <Problem />
+      <HowItWorks />
+      <Modules />
+      <AiOnboarding />
+      <WhoFor />
       <Faq />
       <CtaBand />
     </>

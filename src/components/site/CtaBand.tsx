@@ -1,59 +1,57 @@
+import type { ReactNode } from "react";
 import { Container } from "@/components/ui/layout";
 import { Reveal } from "@/components/ui/Reveal";
 import { Button } from "@/components/ui/Button";
-import { TenureRings } from "@/components/visuals/TenureRings";
 import { site } from "@/lib/site";
-import type { ReactNode } from "react";
 
-/** Site-wide closing call to action. Reused at the foot of every page. */
+/** Site-wide closing call to action — a navy band. Reused at the foot of pages. */
 export function CtaBand({
-  eyebrow = "Begin the record",
   title,
-  sub = "See Tenure on your organization's real handoff. A short call — we'll show you exactly what carries forward.",
+  sub = "See Tenure on your organization's real handoff. A short demo — we'll show you exactly what carries forward.",
 }: {
-  eyebrow?: string;
   title?: ReactNode;
   sub?: string;
 }) {
   return (
-    <section className="relative overflow-hidden border-t border-line/60 py-28 sm:py-36">
+    <section className="relative overflow-hidden bg-ink py-24 sm:py-28">
       <div
         aria-hidden
-        className="pointer-events-none absolute left-1/2 top-1/2 w-[46rem] max-w-none -translate-x-1/2 -translate-y-1/2 opacity-50 [mask-image:radial-gradient(closest-side,black,transparent_78%)]"
-      >
-        <TenureRings rings={10} className="w-full" />
-      </div>
+        className="pointer-events-none absolute inset-0 [background:radial-gradient(55%_60%_at_50%_45%,rgba(37,169,109,0.16),transparent_70%)]"
+      />
+      {/* angular accents */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 [background:radial-gradient(60%_50%_at_50%_50%,rgba(201,138,58,0.08),transparent_70%)]"
+        className="pointer-events-none absolute right-[12%] top-[22%] hidden h-6 w-6 rotate-[18deg] rounded-[6px] bg-coral/70 sm:block"
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute left-[13%] bottom-[24%] hidden h-5 w-5 rotate-45 rounded-[4px] bg-violet/70 sm:block"
       />
 
       <Container className="relative text-center">
         <Reveal>
-          <p className="label-mono">{eyebrow}</p>
-        </Reveal>
-        <Reveal delay={0.06}>
-          <h2 className="font-display mx-auto mt-6 max-w-3xl text-[2.4rem] leading-[1.05] text-parchment sm:text-[3.2rem] lg:text-[3.6rem]">
+          <h2 className="font-display mx-auto max-w-2xl text-[2.2rem] font-semibold leading-[1.05] tracking-[-0.035em] text-paper sm:text-[3rem]">
             {title ?? (
               <>
-                Hand off the org.
-                <br className="hidden sm:block" /> Not a{" "}
-                <em className="foil font-normal italic">cold start</em>.
+                Run the org. Hand it off.{" "}
+                <span className="text-grove-bright">Lose nothing.</span>
               </>
             )}
           </h2>
         </Reveal>
-        <Reveal delay={0.12}>
-          <p className="mx-auto mt-7 max-w-xl text-lg leading-relaxed text-muted">{sub}</p>
+        <Reveal delay={0.08}>
+          <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-paper/70">
+            {sub}
+          </p>
         </Reveal>
-        <Reveal delay={0.18}>
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-4">
+        <Reveal delay={0.14}>
+          <div className="mt-9 flex flex-wrap items-center justify-center gap-x-6 gap-y-4">
             <Button href={site.bookingUrl} size="lg" arrow>
-              Book an intro call
+              Book a demo
             </Button>
             <a
               href={`mailto:${site.email}`}
-              className="text-[0.97rem] text-muted underline-offset-4 transition-colors hover:text-parchment hover:underline"
+              className="text-[0.97rem] text-paper/70 underline-offset-4 transition-colors hover:text-paper hover:underline"
             >
               or email us
             </a>

@@ -1,52 +1,47 @@
 import { chromium } from "playwright";
 import { readFileSync } from "node:fs";
 
-// embed the self-hosted body font so the card renders fully on-brand
 const gs = readFileSync("src/fonts/GeneralSans-Variable.woff2").toString("base64");
 
-// concentric "Tenure rings" for the card backdrop
-const circles = Array.from({ length: 8 }, (_, i) => {
-  const r = 28 + i * 23;
-  const op = (0.3 + (i / 7) * 0.6).toFixed(2);
-  const w = (1 + (i / 7) * 1.1).toFixed(2);
-  return `<circle cx="200" cy="200" r="${r}" stroke="#c98a3a" stroke-width="${w}" opacity="${op}" />`;
-}).join("");
-
-const seal = `<svg class="seal" viewBox="0 0 32 32" fill="none">
-  <g stroke="#c98a3a" stroke-linecap="round">
-    <circle cx="16" cy="16" r="11" stroke-width="1" opacity="0.45"/>
-    <circle cx="16" cy="16" r="8" stroke-width="1.1" opacity="0.7"/>
-    <circle cx="16" cy="16" r="5" stroke-width="1.2" opacity="0.95"/>
-  </g>
-  <circle cx="16" cy="16" r="2.4" fill="#e6a94e"/>
+const logo = `<svg width="46" height="46" viewBox="0 0 32 32">
+  <defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#1f4467"/><stop offset="100%" stop-color="#0c1e33"/>
+  </linearGradient></defs>
+  <rect width="32" height="32" rx="9" fill="url(#g)"/>
+  <rect x="7.5" y="9" width="17" height="3.5" rx="1.4" fill="#fff"/>
+  <rect x="14.25" y="9" width="3.5" height="12" rx="1.4" fill="#fff"/>
+  <rect x="10.5" y="22.4" width="11" height="2.6" rx="1.3" fill="#2cb574"/>
 </svg>`;
 
 const html = `<!doctype html><html><head><meta charset="utf-8">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,500&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
 <style>
 @font-face{font-family:'General Sans';src:url(data:font/woff2;base64,${gs}) format('woff2');font-weight:200 700;}
 *{margin:0;padding:0;box-sizing:border-box;}
-body{width:1200px;height:630px;background:#0f1115;color:#f2efe9;font-family:'General Sans',system-ui,sans-serif;overflow:hidden;position:relative;}
-.glow{position:absolute;inset:0;background:radial-gradient(72% 64% at 80% 26%, rgba(201,138,58,0.20), transparent 60%);}
-.rings{position:absolute;right:-180px;top:50%;transform:translateY(-50%);width:780px;height:780px;opacity:0.55;-webkit-mask-image:radial-gradient(closest-side,#000 60%,transparent);mask-image:radial-gradient(closest-side,#000 60%,transparent);}
-.rings .core{fill:#e6a94e;}
+body{width:1200px;height:630px;background:#fbf9f5;color:#0c1e33;font-family:'General Sans',sans-serif;overflow:hidden;position:relative;}
+.glow{position:absolute;inset:0;background:radial-gradient(70% 55% at 50% -8%, rgba(28,140,90,0.10), transparent 60%);}
+.sq{position:absolute;border-radius:8px;}
 .wrap{position:relative;padding:84px;height:100%;display:flex;flex-direction:column;justify-content:space-between;}
 .brand{display:flex;align-items:center;gap:14px;}
-.brand .seal{width:38px;height:38px;}
-.brand .name{font-family:'Fraunces',serif;font-size:32px;letter-spacing:-0.01em;font-weight:500;}
-h1{font-family:'Fraunces',serif;font-size:80px;line-height:1.03;letter-spacing:-0.02em;max-width:780px;font-weight:400;}
-h1 em{font-style:italic;background:linear-gradient(100deg,#c98a3a,#e6a94e 55%,#c98a3a);-webkit-background-clip:text;background-clip:text;color:transparent;}
-.foot{font-family:'IBM Plex Mono',monospace;font-size:19px;letter-spacing:0.16em;color:#7c828a;text-transform:uppercase;}
+.brand .name{font-size:30px;font-weight:600;letter-spacing:-0.03em;}
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:18px;letter-spacing:0.16em;text-transform:uppercase;color:#8a97a4;}
+h1{font-size:86px;font-weight:600;line-height:1.02;letter-spacing:-0.04em;max-width:1000px;}
+h1 .g{color:#1c8c5a;}
+.foot{font-family:'IBM Plex Mono',monospace;font-size:18px;letter-spacing:0.14em;text-transform:uppercase;color:#8a97a4;}
 </style></head>
 <body>
 <div class="glow"></div>
-<svg class="rings" viewBox="0 0 400 400" fill="none">${circles}<circle class="core" cx="200" cy="200" r="9"/></svg>
+<div class="sq" style="left:-40px;top:150px;width:54px;height:54px;background:#ed6a4a;transform:rotate(18deg);"></div>
+<div class="sq" style="right:80px;top:120px;width:40px;height:40px;background:#6c4cf1;transform:rotate(45deg);"></div>
+<div class="sq" style="right:150px;bottom:150px;width:34px;height:34px;background:#e8b04b;transform:rotate(12deg);"></div>
 <div class="wrap">
-  <div class="brand">${seal}<span class="name">Tenure</span></div>
-  <h1>Knowledge that <em>outlasts</em> the term.</h1>
-  <div class="foot">tenurework.com&nbsp;&nbsp;·&nbsp;&nbsp;Founded at Simon Business School</div>
+  <div class="brand">${logo}<span class="name">Tenure</span></div>
+  <div>
+    <div class="eyebrow" style="margin-bottom:22px;">University ERP · built for turnover</div>
+    <h1>People graduate.<br/><span class="g">The know-how stays.</span></h1>
+  </div>
+  <div class="foot">Supported by Startup Wednesday · Simon Business School</div>
 </div>
 </body></html>`;
 

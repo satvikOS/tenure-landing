@@ -9,9 +9,9 @@ export const site = {
   domain: "tenurework.com",
   url: "https://www.tenurework.com",
 
-  tagline: "The institutional memory layer for teams that turn over.",
+  tagline: "The ERP that keeps the memory when the people change.",
   description:
-    "Every year, organizations lose hard-won knowledge when leadership changes hands. Tenure captures it as the work happens, so the next board inherits a living record on day one — not a cold start.",
+    "Tenure is the operating system for university administrations and student organizations. Operations, money, events, and institutional memory live in one place — and an AI that has learned everything the role has done gets each new leader productive in days, not a semester.",
 
   // TODO: replace with the real scheduling link (Cal.com / Calendly).
   bookingUrl: "https://cal.com/tenure/intro",
@@ -50,6 +50,21 @@ export const site = {
     linkedin: "https://www.linkedin.com/company/tenurework",
     x: "https://x.com/tenurework",
   },
+
+  supporters: [
+    {
+      name: "Startup Wednesday",
+      src: "/logos/startup-wednesday.png",
+      width: 2000,
+      height: 563,
+    },
+    {
+      name: "Simon Business School",
+      src: "/logos/simon-business-school.png",
+      width: 1000,
+      height: 625,
+    },
+  ],
 } as const;
 
 export type Site = typeof site;

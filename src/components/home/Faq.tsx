@@ -1,93 +1,92 @@
 import { Container, Eyebrow } from "@/components/ui/layout";
 import { Reveal } from "@/components/ui/Reveal";
-import { ContourField } from "@/components/visuals/ContourField";
 import { site } from "@/lib/site";
 
-const QA = [
+type Item = { q: string; a: string };
+
+const ITEMS: Item[] = [
   {
     q: "Does Tenure replace our Google Drive, Slack, or Notion?",
-    a: "No. Tenure sits on top of the tools you already use and pulls the things that matter into one living record the next board can actually find.",
+    a: "No — Tenure sits on top of the tools you already use and pulls what matters into one system of record. The files, threads, and decisions that define how the org runs stop living in someone's personal account and start belonging to the role.",
   },
   {
-    q: "Who owns the information?",
-    a: "The organization does. Each board inherits it; nothing leaves with an individual when their term ends.",
+    q: "Who owns the data?",
+    a: "The organization does. Access passes cleanly to the next board at every transition, and nothing leaves with an individual when they graduate or move on. The seat keeps its history; the person hands off the keys.",
   },
   {
-    q: "What actually happens at handoff?",
-    a: "Outgoing leaders mark what matters and Tenure assembles the record. Incoming leaders open an organized history on day one — contacts, deals, playbooks, and the reasoning behind them.",
+    q: "How fast is onboarding, really?",
+    a: "Days instead of a semester. Because the institutional memory stays with the seat, an AI that has learned everything the role has done answers from the role's own history — budgets, vendors, past events, the reasons behind decisions — so a new leader is productive almost immediately.",
   },
   {
-    q: "How long does it take to set up?",
-    a: "It's built to start from your existing folder, so you're not rebuilding anything. Most of the value is simply capturing the work you're already doing.",
+    q: "Is it for administrators or students?",
+    a: "Both. Student organizations run their day-to-day operations — finance, events, members, documents — while administrations get the oversight and continuity that keep every org healthy across leadership changes.",
   },
   {
-    q: "Is it only for student clubs?",
-    a: "It starts there — but it's for any organization where leadership rotates on a schedule and knowledge doesn't transfer with it.",
+    q: "Is student data handled responsibly?",
+    a: "Yes. Tenure runs on least-access by default, and the organization owns its records — not Tenure, not any individual. We collect only what the platform needs to do its job. See our Privacy page for the details.",
   },
   {
     q: "What does it cost?",
-    a: "We're setting pilot pricing with our Fall 2026 organizations. Book an intro call and we'll walk you through it.",
+    a: "We're setting pilot pricing with the Fall 2026 organizations directly, so it fits a real student-org and administration budget. Book a demo and we'll walk you through it.",
   },
 ];
 
+/** Plus mark that flips to a minus when its <details> opens. */
+function Marker() {
+  return (
+    <span
+      aria-hidden
+      className="relative ml-4 grid h-5 w-5 shrink-0 place-items-center text-grove"
+    >
+      <span className="absolute h-[2px] w-3 rounded-full bg-current" />
+      <span className="absolute h-[2px] w-3 rounded-full bg-current rotate-90 transition-transform duration-300 ease-out group-open:rotate-0" />
+    </span>
+  );
+}
+
 export function Faq() {
   return (
-    <section className="relative overflow-hidden border-t border-line/60 py-24 sm:py-32">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -top-20 right-0 h-[150%] w-[66%] text-patina opacity-[0.55] blur-[1px] [mask-image:radial-gradient(62%_60%_at_84%_26%,black,transparent_72%)]"
-      >
-        <ContourField lines={18} seed={5} />
-      </div>
-      <Container className="relative z-10 grid gap-14 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
-        <div>
+    <section className="relative border-t border-line bg-sand py-24 sm:py-32">
+      <Container className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
+        {/* LEFT — heading + nudge */}
+        <div className="lg:sticky lg:top-28 lg:self-start">
           <Reveal>
-            <Eyebrow index="06">Questions</Eyebrow>
+            <Eyebrow>Questions</Eyebrow>
           </Reveal>
           <Reveal delay={0.06}>
-            <h2 className="font-display mt-6 text-[2rem] leading-[1.1] text-parchment sm:text-[2.5rem]">
-              The things boards ask first.
+            <h2 className="mt-5 font-display text-[2rem] font-semibold leading-[1.08] tracking-[-0.03em] text-ink sm:text-[2.5rem] lg:text-[2.8rem]">
+              The things teams <span className="text-grove">ask first.</span>
             </h2>
           </Reveal>
           <Reveal delay={0.12}>
-            <p className="mt-6 text-muted">
-              Still wondering about your organization in particular?{" "}
+            <p className="mt-6 max-w-sm text-lg leading-relaxed text-ink-soft">
+              Still deciding whether Tenure fits your org?{" "}
               <a
                 href={site.bookingUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-brass underline-offset-4 transition-colors hover:text-brass-glint hover:underline"
+                className="font-medium text-grove underline-offset-4 transition-colors hover:text-grove-deep hover:underline"
               >
-                Book an intro call
-              </a>
-              .
+                Book a demo
+              </a>{" "}
+              and ask us anything.
             </p>
           </Reveal>
         </div>
 
-        <Reveal delay={0.08}>
-          <div className="border-t border-line">
-            {QA.map((item) => (
-              <details
-                key={item.q}
-                className="group border-b border-line"
-              >
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-5 text-left text-[1.05rem] text-parchment transition-colors hover:text-brass-glint [&::-webkit-details-marker]:hidden">
+        {/* RIGHT — accordion */}
+        <Reveal delay={0.08} className="border-t border-line">
+          {ITEMS.map((item) => (
+            <details key={item.q} className="group border-b border-line">
+              <summary className="flex cursor-pointer list-none items-center justify-between py-5 text-left text-ink [&::-webkit-details-marker]:hidden">
+                <span className="font-display text-lg font-medium tracking-[-0.01em]">
                   {item.q}
-                  <span
-                    aria-hidden
-                    className="relative h-4 w-4 shrink-0 text-brass"
-                  >
-                    <span className="absolute left-1/2 top-1/2 h-px w-3.5 -translate-x-1/2 -translate-y-1/2 bg-current" />
-                    <span className="absolute left-1/2 top-1/2 h-3.5 w-px -translate-x-1/2 -translate-y-1/2 bg-current transition-transform duration-300 group-open:rotate-90" />
-                  </span>
-                </summary>
-                <p className="max-w-xl pb-6 text-[0.98rem] leading-relaxed text-muted">
-                  {item.a}
-                </p>
-              </details>
-            ))}
-          </div>
+                </span>
+                <Marker />
+              </summary>
+              <p className="max-w-xl pb-6 text-base leading-relaxed text-ink-soft">
+                {item.a}
+              </p>
+            </details>
+          ))}
         </Reveal>
       </Container>
     </section>

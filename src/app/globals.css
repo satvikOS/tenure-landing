@@ -1,50 +1,58 @@
 @import "tailwindcss";
 
 /* ============================================================================
-   TENURE — "The Record"
-   A living institutional record, rendered in premium dark.
+   TENURE — light, warm, geometric. (Frankli × Endex × Crescent)
+   ERP for university administrations + student organizations.
    ============================================================================ */
 
 @theme {
-  /* ----- Palette -------------------------------------------------------- */
-  --color-ink: #0f1115;          /* base ground                            */
-  --color-ink-raised: #16191f;   /* raised surfaces / cards                */
-  --color-ink-deep: #0a0c0f;     /* deepest wells, footer                  */
-  --color-umber: #1a1814;        /* warm "ledger paper in low light" panel */
-  --color-umber-raised: #221f19;
+  /* ----- Surfaces (light) ----------------------------------------------- */
+  --color-paper: #fbf9f5;        /* warm white base                        */
+  --color-sand: #f1ece2;         /* cream alt sections                     */
+  --color-cloud: #ffffff;        /* pure white cards                       */
 
-  --color-parchment: #f2efe9;    /* primary text                           */
-  --color-brass: #c98a3a;        /* primary accent — ring linework         */
-  --color-brass-glint: #e6a94e;  /* foil highlight / hover                 */
-  --color-patina: #7ba6a0;       /* secondary — brass aged by time         */
+  /* ----- Ink (deep navy) ------------------------------------------------ */
+  --color-ink: #0c1e33;          /* primary text + dark sections           */
+  --color-ink-raised: #122a44;   /* raised dark surfaces                   */
+  --color-ink-soft: #46586c;     /* secondary text on light                */
+  --color-ink-faint: #8a97a4;    /* captions, labels                       */
 
-  --color-line: #262b33;         /* hairline rules on ink                  */
-  --color-line-warm: #2f2a22;    /* hairline rules on umber                */
-  --color-muted: #9aa0a8;        /* secondary text                         */
-  --color-faint: #6b7178;        /* captions, labels                       */
+  /* ----- Lines ---------------------------------------------------------- */
+  --color-line: #e7e0d4;         /* warm border on light                   */
+  --color-line-soft: #efeae0;
+  --color-line-dark: #21384f;    /* border on navy                         */
 
-  /* ----- Radius (crisp, record-like — curves come from the rings) ------- */
-  --radius-xs: 2px;
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 16px;
+  /* ----- Accent (grove green) ------------------------------------------- */
+  --color-grove: #1c8c5a;
+  --color-grove-deep: #14633f;
+  --color-grove-bright: #25a96d;
+  --color-grove-soft: #e4f1e9;   /* tint fill                              */
+
+  /* ----- Playful secondaries (Frankli shapes) --------------------------- */
+  --color-coral: #ed6a4a;
+  --color-gold: #e8b04b;
+  --color-sky: #3e7cb1;
+  --color-violet: #6c4cf1;       /* nods to Startup Wednesday              */
+
+  /* ----- Radius (friendly, rounded) ------------------------------------- */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 26px;
 
   /* ----- Motion --------------------------------------------------------- */
-  --ease-record: cubic-bezier(0.16, 1, 0.3, 1);
-
-  /* ----- Type scale ----------------------------------------------------- */
-  --text-eyebrow: 0.75rem;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @theme inline {
   --font-sans: var(--font-general), ui-sans-serif, system-ui, -apple-system, sans-serif;
-  --font-display: var(--font-fraunces), Georgia, "Times New Roman", serif;
+  --font-display: var(--font-general), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-plex), ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
 @layer base {
   :root {
-    color-scheme: dark;
+    color-scheme: light;
   }
 
   * {
@@ -57,25 +65,24 @@
   }
 
   body {
-    background-color: var(--color-ink);
-    color: var(--color-parchment);
+    background-color: var(--color-paper);
+    color: var(--color-ink);
     font-family: var(--font-general), ui-sans-serif, system-ui, sans-serif;
     font-synthesis-weight: none;
-    font-feature-settings: "ss01";
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
   ::selection {
-    background: var(--color-brass);
-    color: var(--color-ink);
+    background: var(--color-grove);
+    color: var(--color-cloud);
   }
 
   :focus-visible {
-    outline: 2px solid var(--color-brass);
+    outline: 2px solid var(--color-grove);
     outline-offset: 3px;
-    border-radius: 1px;
+    border-radius: 2px;
   }
 
   a {
@@ -83,59 +90,32 @@
     text-decoration: none;
   }
 
-  /* Display headings: optical sizing + a touch of WONK for institutional warmth */
+  /* Display headings: tight, confident */
   .font-display {
-    font-variation-settings: "opsz" 144, "SOFT" 0, "WONK" 0;
-    letter-spacing: -0.018em;
-  }
-
-  ::-webkit-scrollbar {
-    width: 12px;
-    height: 12px;
-  }
-  ::-webkit-scrollbar-thumb {
-    background: #232830;
-    border: 3px solid var(--color-ink);
-    border-radius: 99px;
-  }
-  ::-webkit-scrollbar-thumb:hover {
-    background: #2e333d;
+    letter-spacing: -0.025em;
   }
 }
 
-/* ----- Signature utilities ------------------------------------------------ */
+/* ----- Utilities ---------------------------------------------------------- */
 
-/* A true hairline rule the color of an aged ledger line. */
-@utility rule {
-  height: 1px;
-  width: 100%;
-  background: linear-gradient(
-    to right,
-    transparent,
-    color-mix(in oklab, var(--color-brass) 28%, transparent),
-    var(--color-line),
-    transparent
-  );
-}
-
-/* Monospace "registrar" label — record numbers, term tags. */
+/* Monospace eyebrow / system label */
 @utility label-mono {
   font-family: var(--font-mono);
   font-size: 0.6875rem;
   font-weight: 500;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--color-faint);
+  color: var(--color-ink-faint);
 }
 
-/* Foil-glint text used sparingly on the brass accent. */
-@utility foil {
-  background: linear-gradient(
-    100deg,
-    var(--color-brass) 0%,
-    var(--color-brass-glint) 45%,
-    var(--color-brass) 70%
-  );
+/* Giant embossed wordmark for the navy footer */
+.wordmark-giant {
+  font-family: var(--font-general), sans-serif;
+  font-weight: 600;
+  font-size: clamp(5rem, 21vw, 19rem);
+  line-height: 0.8;
+  letter-spacing: -0.05em;
+  background: linear-gradient(180deg, #21405f 0%, #16314c 50%, #0c1e33 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -144,7 +124,7 @@
 /* ----- Legal / long-form prose ------------------------------------------- */
 @layer components {
   .legal {
-    color: var(--color-muted);
+    color: var(--color-ink-soft);
     font-size: 1rem;
     line-height: 1.78;
   }
@@ -153,25 +133,25 @@
   }
   .legal h2 {
     margin-top: 2.75rem;
-    color: var(--color-parchment);
-    font-family: var(--font-fraunces), Georgia, serif;
-    font-size: 1.55rem;
+    color: var(--color-ink);
+    font-weight: 600;
+    font-size: 1.5rem;
     line-height: 1.2;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.02em;
   }
   .legal h3 {
     margin-top: 1.75rem;
-    color: var(--color-parchment);
+    color: var(--color-ink);
     font-weight: 600;
     font-size: 1.05rem;
   }
   .legal a {
-    color: var(--color-brass);
+    color: var(--color-grove);
     text-decoration: underline;
     text-underline-offset: 3px;
   }
   .legal a:hover {
-    color: var(--color-brass-glint);
+    color: var(--color-grove-deep);
   }
   .legal ul {
     margin-top: 1rem;
@@ -187,30 +167,15 @@
     position: absolute;
     left: 0;
     top: 0.72em;
-    height: 5px;
-    width: 5px;
+    height: 6px;
+    width: 6px;
     border-radius: 2px;
-    background: var(--color-brass);
-    opacity: 0.7;
+    background: var(--color-grove);
   }
   .legal strong {
-    color: var(--color-parchment);
+    color: var(--color-ink);
     font-weight: 600;
   }
-}
-
-/* ----- Giant embossed wordmark (footer) — pressed into the record -------- */
-.wordmark-giant {
-  font-family: var(--font-fraunces), Georgia, serif;
-  font-weight: 500;
-  font-size: clamp(5rem, 20.5vw, 19rem);
-  line-height: 0.74;
-  letter-spacing: -0.045em;
-  background: linear-gradient(180deg, #2b303a 0%, #171b21 50%, #0b0d11 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  filter: drop-shadow(0 1.5px 0 rgba(242, 239, 233, 0.05));
 }
 
 /* Reduced motion: respect the reader. */

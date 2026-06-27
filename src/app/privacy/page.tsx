@@ -18,15 +18,16 @@ export default function PrivacyPage() {
       />
 
       <Container>
-        <div className="legal max-w-2xl pb-28">
+        <div className="legal max-w-2xl pb-24">
           <h2>Overview</h2>
           <p>
-            Tenure is an early-stage product built to hold an organization&rsquo;s
-            institutional memory — the contacts, decisions, and playbooks that
-            usually disappear when leadership turns over. This page explains, in
-            plain terms, what information we collect, how we use it, and the
-            choices you have. We&rsquo;ll keep it honest and update it as the
-            product grows.
+            Tenure is an early-stage ERP for university administrations and
+            student organizations. The platform holds an organization&rsquo;s
+            operations and institutional memory — finance, events, members,
+            documents, and the decisions behind them — so the record stays with
+            the seat when the people in it rotate. This page explains, in plain
+            terms, what information we collect, how we use it, and the choices you
+            have. We&rsquo;ll keep it honest and update it as the product grows.
           </p>
 
           <h2>Information we collect</h2>
@@ -36,9 +37,9 @@ export default function PrivacyPage() {
               name, email, role, and the organization you belong to.
             </li>
             <li>
-              <strong>The knowledge you choose to store</strong> — the records,
-              notes, files, and history your organization decides to keep in
-              Tenure.
+              <strong>The organizational records you choose to store</strong> —
+              the finances, events, members, documents, notes, and history your
+              organization decides to keep in Tenure.
             </li>
             <li>
               <strong>Basic usage data</strong> — the operational information we
@@ -46,15 +47,17 @@ export default function PrivacyPage() {
             </li>
           </ul>
 
-          <h2>How we use information</h2>
+          <h2>How we use it</h2>
           <p>
             We use the information to run Tenure, support your organization, and
-            improve how the product works. We do not sell personal information.
-            We use it to deliver the service you&rsquo;re asking for — not to
-            build a business out of your data.
+            power AI onboarding — so when a leader leaves a seat, the AI that has
+            learned what the role has done can get the next person productive in
+            days instead of a semester. We do not sell personal information. We
+            use it to deliver the service you&rsquo;re asking for, not to build a
+            business out of your data.
           </p>
 
-          <h2>Who can see your information</h2>
+          <h2>Who can see it</h2>
           <ul>
             <li>
               <strong>Your organization&rsquo;s members</strong>, and the boards
@@ -71,12 +74,23 @@ export default function PrivacyPage() {
             </li>
           </ul>
 
-          <h2>Who owns the information</h2>
+          <h2>Who owns it</h2>
           <p>
             The organization owns its record. That&rsquo;s the whole point of
-            Tenure: knowledge belongs to the seat, not the person who held it.
-            Individuals do not take the record with them when their term ends —
-            it carries forward to whoever inherits the role.
+            Tenure: the role persists while the people rotate, so knowledge
+            belongs to the seat, not the person who held it. Individuals do not
+            take the record with them when their term ends — it carries forward to
+            whoever inherits the role.
+          </p>
+
+          <h2>Student data</h2>
+          <p>
+            We treat student information on a least-access basis: people see what
+            their role needs, and no more. The institution or organization owns
+            its records — not Tenure, and not the individuals who pass through a
+            seat. We aim to support FERPA-conscious handling of education records,
+            and we&rsquo;ll work with your administration on the policies and
+            controls that fit your institution.
           </p>
 
           <h2>Security</h2>
