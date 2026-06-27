@@ -68,18 +68,10 @@ export function SiteFooter() {
         </div>
       </div>
 
-      {/* giant wordmark, pressed into the navy */}
-      <div
-        aria-hidden
-        className="pointer-events-none relative z-0 mt-10 flex select-none justify-center overflow-hidden sm:mt-4"
-      >
-        <span className="wordmark-giant">Tenure</span>
-      </div>
-
-      <div className="relative z-10 mx-auto w-full max-w-6xl px-5 pb-9 sm:px-8">
+      <div className="relative z-10 mx-auto w-full max-w-6xl px-5 pb-8 sm:px-8">
         <div className="flex flex-col gap-4 border-t border-line-dark pt-7 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-center gap-2.5">
-            <Logo className="h-4 w-4" solid="#1f4467" />
+            <Logo className="h-4 w-4 text-grove" />
             <span className="text-sm text-paper/45">
               © {year} {site.name}. All rights reserved.
             </span>
@@ -116,6 +108,14 @@ export function SiteFooter() {
             </a>
           </div>
         </div>
+      </div>
+
+      {/* giant embossed wordmark — at the very end, bleeding off the bottom */}
+      <div
+        aria-hidden
+        className="pointer-events-none relative z-0 mt-12 flex select-none justify-center overflow-hidden"
+      >
+        <span className="wordmark-giant block translate-y-[12%]">Tenure</span>
       </div>
     </footer>
   );

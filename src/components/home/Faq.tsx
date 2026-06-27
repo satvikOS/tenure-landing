@@ -1,29 +1,29 @@
-import { Container, Eyebrow } from "@/components/ui/layout";
+import Image from "next/image";
+import { Container } from "@/components/ui/layout";
 import { Reveal } from "@/components/ui/Reveal";
+import { Logo } from "@/components/brand/Logo";
 import { site } from "@/lib/site";
 
-type Item = { q: string; a: string };
-
-const ITEMS: Item[] = [
+const ITEMS: { q: string; a: string }[] = [
   {
     q: "Does Tenure replace our Google Drive, Slack, or Notion?",
-    a: "No — Tenure sits on top of the tools you already use and pulls what matters into one system of record. The files, threads, and decisions that define how the org runs stop living in someone's personal account and start belonging to the role.",
+    a: "No — Tenure fits around the tools you already use and pulls what matters into one system of record. The files, threads, and decisions that define how the org runs stop living in someone's personal account and start belonging to the role.",
   },
   {
     q: "Who owns the data?",
-    a: "The organization does. Access passes cleanly to the next board at every transition, and nothing leaves with an individual when they graduate or move on. The seat keeps its history; the person hands off the keys.",
+    a: "The organization does. Access passes cleanly to the next board at every transition, and nothing leaves with an individual when they graduate or move on.",
   },
   {
     q: "How fast is onboarding, really?",
-    a: "Days instead of a semester. Because the institutional memory stays with the seat, an AI that has learned everything the role has done answers from the role's own history — budgets, vendors, past events, the reasons behind decisions — so a new leader is productive almost immediately.",
+    a: "Days instead of a semester. Because the memory stays with the seat, an AI that has learned everything the role has done answers from the role's own history — budgets, vendors, past events, the reasons behind decisions.",
   },
   {
     q: "Is it for administrators or students?",
-    a: "Both. Student organizations run their day-to-day operations — finance, events, members, documents — while administrations get the oversight and continuity that keep every org healthy across leadership changes.",
+    a: "Both. Student organizations run their day-to-day — finance, events, members, documents — while administrations get the oversight and continuity that keep every org healthy across leadership changes.",
   },
   {
     q: "Is student data handled responsibly?",
-    a: "Yes. Tenure runs on least-access by default, and the organization owns its records — not Tenure, not any individual. We collect only what the platform needs to do its job. See our Privacy page for the details.",
+    a: "Yes. Tenure runs on least-access by default, and the organization owns its records — not Tenure, not any individual. See our Privacy page for the details.",
   },
   {
     q: "What does it cost?",
@@ -31,63 +31,70 @@ const ITEMS: Item[] = [
   },
 ];
 
-/** Plus mark that flips to a minus when its <details> opens. */
-function Marker() {
-  return (
-    <span
-      aria-hidden
-      className="relative ml-4 grid h-5 w-5 shrink-0 place-items-center text-grove"
-    >
-      <span className="absolute h-[2px] w-3 rounded-full bg-current" />
-      <span className="absolute h-[2px] w-3 rounded-full bg-current rotate-90 transition-transform duration-300 ease-out group-open:rotate-0" />
-    </span>
-  );
-}
-
 export function Faq() {
   return (
-    <section className="relative border-t border-line bg-sand py-24 sm:py-32">
-      <Container className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
-        {/* LEFT — heading + nudge */}
-        <div className="lg:sticky lg:top-28 lg:self-start">
-          <Reveal>
-            <Eyebrow>Questions</Eyebrow>
-          </Reveal>
-          <Reveal delay={0.06}>
-            <h2 className="mt-5 font-display text-[2rem] font-semibold leading-[1.08] tracking-[-0.03em] text-ink sm:text-[2.5rem] lg:text-[2.8rem]">
-              The things teams <span className="text-grove">ask first.</span>
-            </h2>
-          </Reveal>
-          <Reveal delay={0.12}>
-            <p className="mt-6 max-w-sm text-lg leading-relaxed text-ink-soft">
-              Still deciding whether Tenure fits your org?{" "}
-              <a
-                href={site.bookingUrl}
-                className="font-medium text-grove underline-offset-4 transition-colors hover:text-grove-deep hover:underline"
-              >
-                Book a demo
-              </a>{" "}
-              and ask us anything.
-            </p>
-          </Reveal>
-        </div>
+    <section className="relative overflow-hidden border-t border-line bg-paper py-24 sm:py-32">
+      {/* organic ribbon image cutting in from the top-right */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute right-0 top-0 h-[62%] w-[62%] [mask-image:linear-gradient(245deg,black,transparent_62%)]"
+      >
+        <Image
+          src="/photos/grass-soft.jpg"
+          alt=""
+          width={1500}
+          height={2000}
+          sizes="60vw"
+          className="h-full w-full object-cover opacity-90"
+        />
+        <div
+          aria-hidden
+          className="absolute inset-0 bg-gradient-to-bl from-transparent via-paper/20 to-paper"
+        />
+      </div>
 
-        {/* RIGHT — accordion */}
-        <Reveal delay={0.08} className="border-t border-line">
-          {ITEMS.map((item) => (
-            <details key={item.q} className="group border-b border-line">
-              <summary className="flex cursor-pointer list-none items-center justify-between py-5 text-left text-ink [&::-webkit-details-marker]:hidden">
-                <span className="font-display text-lg font-medium tracking-[-0.01em]">
-                  {item.q}
-                </span>
-                <Marker />
-              </summary>
-              <p className="max-w-xl pb-6 text-base leading-relaxed text-ink-soft">
-                {item.a}
-              </p>
-            </details>
-          ))}
+      <Container className="relative">
+        <Reveal>
+          <h2 className="font-display text-[2.4rem] font-semibold leading-[1] tracking-[-0.035em] text-ink sm:text-[3rem]">
+            FAQ
+          </h2>
         </Reveal>
+
+        <div className="mt-10 max-w-3xl border-t border-line/70 pt-8">
+          <div className="flex flex-col gap-3.5">
+            {ITEMS.map((item, i) => (
+              <Reveal as="div" key={item.q} delay={Math.min(i * 0.05, 0.3)}>
+                <details className="group" open={i === 2}>
+                  <summary className="inline-flex w-fit max-w-[90%] cursor-pointer list-none items-center gap-3 rounded-2xl border border-line bg-cloud px-5 py-3 text-[0.98rem] text-ink shadow-[0_1px_2px_rgba(12,30,51,0.05)] transition-colors hover:border-grove/40 [&::-webkit-details-marker]:hidden">
+                    <span>{item.q}</span>
+                    <span
+                      aria-hidden
+                      className="relative ml-1 grid h-4 w-4 shrink-0 place-items-center text-grove"
+                    >
+                      <span className="absolute h-[2px] w-3 rounded-full bg-current" />
+                      <span className="absolute h-[2px] w-3 rotate-90 rounded-full bg-current transition-transform duration-300 group-open:rotate-0" />
+                    </span>
+                  </summary>
+                  <div className="ml-auto mt-3 flex w-fit max-w-lg items-start gap-3 rounded-2xl rounded-tr-md bg-grove-soft px-5 py-3.5">
+                    <Logo className="mt-0.5 h-4 w-4 shrink-0 text-grove" />
+                    <p className="text-[0.95rem] leading-relaxed text-ink-soft">{item.a}</p>
+                  </div>
+                </details>
+              </Reveal>
+            ))}
+          </div>
+
+          <p className="mt-8 text-ink-soft">
+            Still deciding whether Tenure fits your org?{" "}
+            <a
+              href={site.bookingUrl}
+              className="font-medium text-grove underline-offset-4 transition-colors hover:text-grove-deep hover:underline"
+            >
+              Book a demo
+            </a>
+            .
+          </p>
+        </div>
       </Container>
     </section>
   );

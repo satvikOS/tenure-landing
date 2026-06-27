@@ -34,7 +34,7 @@ export function DashboardMock({ className }: { className?: string }) {
       {/* top bar */}
       <div className="flex items-center justify-between gap-3 border-b border-line bg-paper/60 px-4 py-3 sm:px-5">
         <div className="flex items-center gap-2.5">
-          <Logo className="h-5 w-5" />
+          <Logo className="h-5 w-5 text-grove" />
           <span className="font-display text-sm font-semibold text-ink">Tenure</span>
           <span className="hidden text-ink-faint sm:inline">/</span>
           <span className="hidden text-[0.82rem] text-ink-soft sm:inline">

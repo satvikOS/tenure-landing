@@ -3,15 +3,13 @@ import { readFileSync } from "node:fs";
 
 const gs = readFileSync("src/fonts/GeneralSans-Variable.woff2").toString("base64");
 
-const logo = `<svg width="46" height="46" viewBox="0 0 32 32">
-  <defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0%" stop-color="#1f4467"/><stop offset="100%" stop-color="#0c1e33"/>
-  </linearGradient></defs>
-  <rect width="32" height="32" rx="9" fill="url(#g)"/>
-  <rect x="7.5" y="9" width="17" height="3.5" rx="1.4" fill="#fff"/>
-  <rect x="14.25" y="9" width="3.5" height="12" rx="1.4" fill="#fff"/>
-  <rect x="10.5" y="22.4" width="11" height="2.6" rx="1.3" fill="#2cb574"/>
-</svg>`;
+const petals = [0, 60, 120, 180, 240, 300]
+  .map(
+    (a) =>
+      `<path d="M16 16 C 12.4 10.5, 12.4 5.4, 16 3.4 C 19.6 5.4, 19.6 10.5, 16 16 Z" transform="rotate(${a} 16 16)"/>`,
+  )
+  .join("");
+const logo = `<svg width="44" height="44" viewBox="0 0 32 32" fill="#1c8c5a">${petals}</svg>`;
 
 const html = `<!doctype html><html><head><meta charset="utf-8">
 <link rel="preconnect" href="https://fonts.googleapis.com">

@@ -21,9 +21,9 @@ export function CtaBand({
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 text-paper/[0.06] [mask-image:radial-gradient(70%_70%_at_50%_50%,black,transparent_75%)]"
+        className="pointer-events-none absolute inset-0 text-paper/[0.1] [mask-image:radial-gradient(75%_75%_at_50%_50%,black,transparent_78%)]"
       >
-        <ContourField lines={18} seed={7} />
+        <ContourField seed={3} />
       </div>
       {/* angular accents */}
       <div

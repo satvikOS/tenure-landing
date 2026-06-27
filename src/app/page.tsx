@@ -3,6 +3,7 @@ import { SupporterStrip } from "@/components/site/SupporterStrip";
 import { Problem } from "@/components/home/Problem";
 import { HowItWorks } from "@/components/home/HowItWorks";
 import { Modules } from "@/components/home/Modules";
+import { ProductAtWork } from "@/components/home/ProductAtWork";
 import { AiOnboarding } from "@/components/home/AiOnboarding";
 import { WhoFor } from "@/components/home/WhoFor";
 import { Faq } from "@/components/home/Faq";
@@ -16,6 +17,7 @@ export default function HomePage() {
       <Problem />
       <HowItWorks />
       <Modules />
+      <ProductAtWork />
       <AiOnboarding />
       <WhoFor />
       <Faq />

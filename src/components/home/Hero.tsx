@@ -18,9 +18,9 @@ export function Hero() {
       {/* faint flowing contour grain */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-0 h-[70%] text-grove/[0.07] [mask-image:radial-gradient(75%_70%_at_50%_18%,black,transparent_72%)]"
+        className="pointer-events-none absolute inset-x-0 top-0 h-[78%] text-grove/[0.16] [mask-image:radial-gradient(80%_75%_at_50%_15%,black,transparent_74%)]"
       >
-        <ContourField lines={22} seed={4} />
+        <ContourField seed={1} />
       </div>
 
       {/* geometric accents (Frankli) — angular, floating, no circles */}
