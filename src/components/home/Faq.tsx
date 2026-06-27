@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { Ribbons } from "@/components/visuals/Ribbons";
 import { Container } from "@/components/ui/layout";
 import { Reveal } from "@/components/ui/Reveal";
 import { Logo } from "@/components/brand/Logo";
@@ -34,23 +34,12 @@ const ITEMS: { q: string; a: string }[] = [
 export function Faq() {
   return (
     <section className="relative overflow-hidden border-t border-line bg-paper py-24 sm:py-32">
-      {/* organic ribbon image cutting in from the top-right */}
+      {/* vibrant flowing ribbons cutting in from the top-right (no background) */}
       <div
         aria-hidden
-        className="pointer-events-none absolute right-0 top-0 h-[62%] w-[62%] [mask-image:linear-gradient(245deg,black,transparent_62%)]"
+        className="pointer-events-none absolute -right-12 -top-24 h-[82%] w-[60%] [mask-image:linear-gradient(250deg,black,black_42%,transparent_82%)]"
       >
-        <Image
-          src="/photos/grass-soft.jpg"
-          alt=""
-          width={1500}
-          height={2000}
-          sizes="60vw"
-          className="h-full w-full object-cover opacity-90"
-        />
-        <div
-          aria-hidden
-          className="absolute inset-0 bg-gradient-to-bl from-transparent via-paper/20 to-paper"
-        />
+        <Ribbons className="h-full w-full" />
       </div>
 
       <Container className="relative">
@@ -64,7 +53,7 @@ export function Faq() {
           <div className="flex flex-col gap-3.5">
             {ITEMS.map((item, i) => (
               <Reveal as="div" key={item.q} delay={Math.min(i * 0.05, 0.3)}>
-                <details className="group" open={i === 2}>
+                <details className="group" name="faq" open={i === 2}>
                   <summary className="inline-flex w-fit max-w-[90%] cursor-pointer list-none items-center gap-3 rounded-2xl border border-line bg-cloud px-5 py-3 text-[0.98rem] text-ink shadow-[0_1px_2px_rgba(12,30,51,0.05)] transition-colors hover:border-grove/40 [&::-webkit-details-marker]:hidden">
                     <span>{item.q}</span>
                     <span

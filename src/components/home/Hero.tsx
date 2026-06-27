@@ -61,9 +61,9 @@ export function Hero() {
           </div>
         </Reveal>
 
-        <Reveal delay={0.26} className="mt-14">
-          <DashboardMock className="mx-auto max-w-4xl" />
-        </Reveal>
+        <div className="mt-16">
+          <DashboardMock tilt className="mx-auto max-w-5xl" />
+        </div>
       </Container>
     </section>
   );

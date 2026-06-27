@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/Button";
 import { PageHeader } from "@/components/site/PageHeader";
 import { CtaBand } from "@/components/site/CtaBand";
 import { DashboardMock } from "@/components/visuals/DashboardMock";
+import { ToolLogos } from "@/components/visuals/ToolLogos";
 import { site } from "@/lib/site";
 
 export const metadata = {
@@ -12,8 +13,6 @@ export const metadata = {
   description:
     "One system for your organization's finance, events, members, and memory — with an AI that gets each new leader productive in days, not a semester.",
 };
-
-const TOOLS = ["Google Drive", "Slack", "Notion", "Sheets", "Gmail", "Calendar"];
 
 const svgProps = {
   width: 20,
@@ -150,16 +149,7 @@ export default function ProductPage() {
           <Reveal delay={0.08} className="mt-12">
             <div className="flex flex-col items-center gap-4">
               <p className="label-mono">Built to fit around the tools you already use</p>
-              <div className="flex flex-wrap items-center justify-center gap-2.5">
-                {TOOLS.map((t) => (
-                  <span
-                    key={t}
-                    className="rounded-lg border border-line bg-cloud px-3 py-1.5 font-mono text-[0.78rem] text-ink-soft shadow-[0_1px_2px_rgba(12,30,51,0.04)]"
-                  >
-                    {t}
-                  </span>
-                ))}
-              </div>
+              <ToolLogos className="mt-1 max-w-3xl" />
             </div>
           </Reveal>
         </Container>

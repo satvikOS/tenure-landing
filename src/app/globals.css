@@ -112,10 +112,10 @@
 .wordmark-giant {
   font-family: var(--font-general), sans-serif;
   font-weight: 600;
-  font-size: clamp(4.5rem, 19vw, 17rem);
-  line-height: 0.82;
+  font-size: clamp(5.5rem, 23vw, 22rem);
+  line-height: 0.86;
   letter-spacing: -0.012em;
-  padding-inline: 0.12em;
+  padding-inline: 0.1em;
   background: linear-gradient(180deg, #2a4f73 0%, #18324d 55%, #0c1e33 100%);
   -webkit-background-clip: text;
   background-clip: text;

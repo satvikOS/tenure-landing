@@ -110,11 +110,12 @@ export function SiteFooter() {
         </div>
       </div>
 
-      {/* giant embossed wordmark — at the very end, bleeding off the bottom */}
+      {/* giant embossed bloom + wordmark — at the very end, bleeding off the bottom */}
       <div
         aria-hidden
-        className="pointer-events-none relative z-0 mt-12 flex select-none justify-center overflow-hidden"
+        className="pointer-events-none relative z-0 mt-12 flex select-none items-center justify-center gap-[2.5vw] overflow-hidden"
       >
+        <Logo className="h-[15vw] max-h-[15rem] w-[15vw] max-w-[15rem] shrink-0 translate-y-[6%] text-[#244a70]" />
         <span className="wordmark-giant block translate-y-[12%]">Tenure</span>
       </div>
     </footer>

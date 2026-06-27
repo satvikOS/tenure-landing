@@ -36,8 +36,8 @@ function FinanceCard() {
 
       <div className="mt-5 space-y-2">
         {[
-          { who: "Print order — A. Diaby", amt: "$240" },
-          { who: "Venue deposit — Events", amt: "$1,500" },
+          { who: "Print order — D. Reyes", amt: "$240" },
+          { who: "Gala venue deposit", amt: "$1,500" },
         ].map((r, i) => (
           <div
             key={r.who}
