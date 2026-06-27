@@ -1,5 +1,6 @@
 import { Container, Eyebrow } from "@/components/ui/layout";
 import { Reveal } from "@/components/ui/Reveal";
+import { HandoffAnimation } from "@/components/visuals/HandoffAnimation";
 import { cn } from "@/lib/cn";
 
 const STEPS = [
@@ -58,7 +59,11 @@ export function HowHandoff() {
           </Reveal>
         </div>
 
-        <div className="relative mt-16">
+        <Reveal delay={0.08} className="mt-12">
+          <HandoffAnimation className="mx-auto max-w-3xl" />
+        </Reveal>
+
+        <div className="relative mt-20">
           {/* connector rail (desktop) */}
           <div
             aria-hidden

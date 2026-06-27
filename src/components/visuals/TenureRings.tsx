@@ -74,6 +74,7 @@ export function TenureRings({
         cy={RING_CENTER}
         r={MAXR}
         fill={`url(#${uid}-glow)`}
+        initial={{ opacity: 1 }}
         animate={run ? { opacity: [0.7, 1, 0.7] } : undefined}
         transition={run ? { duration: 7, repeat: Infinity, ease: "easeInOut" } : undefined}
       />
@@ -81,6 +82,7 @@ export function TenureRings({
       {/* faint outer time-ticks, slowly turning */}
       <motion.g
         style={{ transformOrigin: "200px 200px", transformBox: "view-box" }}
+        initial={{ rotate: 0 }}
         animate={run ? { rotate: 360 } : undefined}
         transition={run ? { duration: 240, repeat: Infinity, ease: "linear" } : undefined}
       >
@@ -121,7 +123,7 @@ export function TenureRings({
             strokeWidth={1 + t * 1 + (isNow ? 0.5 : 0)}
             strokeLinecap="round"
             style={{ opacity }}
-            initial={run ? { pathLength: 0, pathOffset: fractured ? 0.07 : 0 } : false}
+            initial={play ? { pathLength: 0, pathOffset: fractured ? 0.07 : 0 } : false}
             animate={{ pathLength: target, pathOffset: fractured ? 0.07 : 0 }}
             transition={
               run
@@ -139,7 +141,7 @@ export function TenureRings({
         r={11}
         fill={`url(#${uid}-core)`}
         style={{ transformOrigin: "200px 200px", transformBox: "view-box" }}
-        initial={run ? { scale: 0, opacity: 0 } : false}
+        initial={play ? { scale: 0, opacity: 0 } : false}
         animate={{ scale: 1, opacity: 1 }}
         transition={run ? { delay: 0.05, duration: 0.6, ease: "backOut" } : { duration: 0 }}
       />
@@ -157,7 +159,7 @@ export function TenureRings({
             rx={1}
             fill="var(--color-brass)"
             style={{ transformOrigin: `${f.x + f.s / 2}px ${f.y + f.s / 2}px`, transformBox: "view-box" }}
-            initial={run ? { opacity: 0 } : false}
+            initial={play ? { opacity: 0 } : false}
             animate={
               run
                 ? { opacity: [0, 0.5, 0], x: [f.x, f.x + f.dx], y: [f.y, f.y + f.dy], rotate: [0, f.r] }

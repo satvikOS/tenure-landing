@@ -44,6 +44,12 @@ export const site = {
     { label: "Privacy", href: "/privacy" },
     { label: "Terms", href: "/terms" },
   ],
+
+  // TODO: replace with the real social profiles.
+  socials: {
+    linkedin: "https://www.linkedin.com/company/tenurework",
+    x: "https://x.com/tenurework",
+  },
 } as const;
 
 export type Site = typeof site;

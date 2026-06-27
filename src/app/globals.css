@@ -199,6 +199,20 @@
   }
 }
 
+/* ----- Giant embossed wordmark (footer) — pressed into the record -------- */
+.wordmark-giant {
+  font-family: var(--font-fraunces), Georgia, serif;
+  font-weight: 500;
+  font-size: clamp(5rem, 20.5vw, 19rem);
+  line-height: 0.74;
+  letter-spacing: -0.045em;
+  background: linear-gradient(180deg, #2b303a 0%, #171b21 50%, #0b0d11 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 1.5px 0 rgba(242, 239, 233, 0.05));
+}
+
 /* Reduced motion: respect the reader. */
 @media (prefers-reduced-motion: reduce) {
   html {

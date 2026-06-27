@@ -1,3 +1,6 @@
+"use client";
+
+import { motion, useReducedMotion } from "motion/react";
 import { RingSeal } from "@/components/visuals/RingSeal";
 import { cn } from "@/lib/cn";
 
@@ -55,6 +58,7 @@ const ENTRIES: Entry[] = [
  * that carried across boards instead of resetting.
  */
 export function ProductFrame({ className }: { className?: string }) {
+  const reduce = useReducedMotion();
   return (
     <div
       className={cn(
@@ -74,7 +78,12 @@ export function ProductFrame({ className }: { className?: string }) {
           </span>
         </div>
         <span className="inline-flex items-center gap-1.5 rounded-full border border-line bg-ink/60 px-2.5 py-1 font-mono text-[0.7rem] text-muted">
-          <span className="h-1.5 w-1.5 rounded-full bg-patina" />
+          <motion.span
+            className="h-1.5 w-1.5 rounded-full bg-patina"
+            initial={{ opacity: 1 }}
+            animate={reduce ? undefined : { opacity: [1, 0.3, 1] }}
+            transition={reduce ? undefined : { duration: 2.4, repeat: Infinity }}
+          />
           Term 2025–26
         </span>
       </div>
@@ -124,9 +133,17 @@ export function ProductFrame({ className }: { className?: string }) {
           </div>
 
           <ul className="mt-4 space-y-2.5">
-            {ENTRIES.map((e) => (
-              <li
+            {ENTRIES.map((e, i) => (
+              <motion.li
                 key={e.title}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={
+                  reduce
+                    ? { duration: 0 }
+                    : { duration: 0.5, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }
+                }
                 className="rounded-lg border border-line bg-ink/50 p-3.5 transition-colors hover:border-brass/30"
               >
                 <div className="flex items-center gap-2">
@@ -142,7 +159,7 @@ export function ProductFrame({ className }: { className?: string }) {
                   </span>
                   inherited from {e.from} · {e.term}
                 </p>
-              </li>
+              </motion.li>
             ))}
           </ul>
         </div>

@@ -1,5 +1,6 @@
 import { Container, Eyebrow } from "@/components/ui/layout";
 import { Reveal } from "@/components/ui/Reveal";
+import { ContourField } from "@/components/visuals/ContourField";
 import { site } from "@/lib/site";
 
 const QA = [
@@ -31,8 +32,14 @@ const QA = [
 
 export function Faq() {
   return (
-    <section className="relative border-t border-line/60 py-24 sm:py-32">
-      <Container className="grid gap-14 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
+    <section className="relative overflow-hidden border-t border-line/60 py-24 sm:py-32">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -top-20 right-0 h-[150%] w-[66%] text-patina opacity-[0.55] blur-[1px] [mask-image:radial-gradient(62%_60%_at_84%_26%,black,transparent_72%)]"
+      >
+        <ContourField lines={18} seed={5} />
+      </div>
+      <Container className="relative z-10 grid gap-14 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
         <div>
           <Reveal>
             <Eyebrow index="06">Questions</Eyebrow>

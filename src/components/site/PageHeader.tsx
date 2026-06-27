@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import { Container, Eyebrow } from "@/components/ui/layout";
 import { Reveal } from "@/components/ui/Reveal";
-import { RingSeal } from "@/components/visuals/RingSeal";
+import { ContourField } from "@/components/visuals/ContourField";
 
 /** Consistent top-of-page header for every non-home route. */
 export function PageHeader({
@@ -21,10 +21,12 @@ export function PageHeader({
         aria-hidden
         className="pointer-events-none absolute inset-0 [background:radial-gradient(90%_70%_at_85%_-20%,rgba(201,138,58,0.09),transparent_55%)]"
       />
-      <RingSeal
-        rings={6}
-        className="pointer-events-none absolute -right-24 -top-24 hidden h-[26rem] w-[26rem] text-brass/[0.05] sm:block"
-      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -top-24 right-0 hidden h-[180%] w-[58%] text-brass opacity-[0.42] blur-[1px] [mask-image:radial-gradient(58%_56%_at_84%_30%,black,transparent_72%)] sm:block"
+      >
+        <ContourField lines={16} seed={3} />
+      </div>
       <Container className="relative pb-16 pt-32 sm:pb-20 sm:pt-40">
         <Reveal>
           <Eyebrow>{eyebrow}</Eyebrow>

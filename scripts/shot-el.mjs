@@ -9,8 +9,9 @@ mkdirSync(outDir, { recursive: true });
 
 const browser = await chromium.launch();
 const page = await browser.newPage({
-  viewport: { width: 1440, height: 1000 },
+  viewport: { width: Number(process.env.WIDTH || 1440), height: 1000 },
   deviceScaleFactor: 2,
+  reducedMotion: process.env.REDUCED ? "reduce" : "no-preference",
 });
 await page.goto(base + path, { waitUntil: "networkidle" });
 await page.waitForTimeout(700);
